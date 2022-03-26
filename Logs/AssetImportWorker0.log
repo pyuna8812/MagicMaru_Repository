@@ -1,0 +1,448 @@
+Using pre-set license
+Built from '2021.1/staging' branch; Version is '2021.1.20f1 (be552157821d) revision 12473633'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19044.1586; Version 2009; 64bit' Language: 'ko' Physical Memory: 8010 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+E:\Unity\2021.1.20f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+E:/Project/MagicMaru
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+58450
+Successfully changed project path to: E:/Project/MagicMaru
+E:/Project/MagicMaru
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 88.35 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.1.20f1 (be552157821d)
+[Subsystems] Discovering subsystems at path E:/Unity/2021.1.20f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Project/MagicMaru/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 Ti with Max-Q Design (ID=0x1f95)
+    Vendor:   NVIDIA
+    VRAM:     3962 MB
+    Driver:   30.0.14.9709
+Initialize mono
+Mono path[0] = 'E:/Unity/2021.1.20f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Unity/2021.1.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'E:/Unity/2021.1.20f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56328
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Unity/2021.1.20f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: E:/Unity/2021.1.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003158 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 87.17 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.610 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2610ms)
+		BeginReloadAssembly (119ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (429ms)
+			LoadAssemblies (119ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (155ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (212ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (87ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (91ms)
+				ProcessInitializeOnLoadMethodAttributes (27ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.012646 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Project\MagicMaru\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image E:\Project\MagicMaru\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 87.25 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.132 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1132ms)
+		BeginReloadAssembly (139ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (943ms)
+			LoadAssemblies (158ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (301ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (374ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (87ms)
+				BeforeProcessingInitializeOnLoad (65ms)
+				ProcessInitializeOnLoadAttributes (203ms)
+				ProcessInitializeOnLoadMethodAttributes (14ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.73 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3675 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 140.5 MB.
+System memory in use after: 140.8 MB.
+
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 4126.
+Total: 2.987900 ms (FindLiveObjects: 0.257700 ms CreateObjectMapping: 0.158900 ms MarkObjects: 2.487100 ms  DeleteObjects: 0.083600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/03.Resources/InGame/Room_Example.jpg
+  artifactKey: Guid(1e7793922bd70134fbfa9de557987006) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room_Example.jpg using Guid(1e7793922bd70134fbfa9de557987006) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e631cc5cd130fc62b29eedcc8d521cfc') in 0.388057 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 544.091891 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_BedLight.png
+  artifactKey: Guid(32ae974afd8a2d84795f80c25147775f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_BedLight.png using Guid(32ae974afd8a2d84795f80c25147775f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b77cc8cee37212f969515036594ab883') in 0.019317 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_WallDeco.png
+  artifactKey: Guid(302db328ffe9c0940a5ba96906de98ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_WallDeco.png using Guid(302db328ffe9c0940a5ba96906de98ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '302396b124cc3834f1782027dadd0da7') in 0.017698 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_DrawerDeco.png
+  artifactKey: Guid(69658e00c6afbcd4d886ed8db4bca6b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_DrawerDeco.png using Guid(69658e00c6afbcd4d886ed8db4bca6b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3001b9aa7285eea21f320131028122e0') in 0.014523 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000159 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_TableLight.png
+  artifactKey: Guid(3e64d2f850ad3b54cb37b8ce4e9cdfac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_TableLight.png using Guid(3e64d2f850ad3b54cb37b8ce4e9cdfac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50ae0e0eaf06c581ef89680d779ed175') in 0.014381 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_Clock.png
+  artifactKey: Guid(3121b8edb8748844384e09652246ecb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_Clock.png using Guid(3121b8edb8748844384e09652246ecb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5eee2f9d4ced7c892a34cdbd44db45e6') in 0.015490 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000242 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_Shelf.png
+  artifactKey: Guid(5cbabee44f6a4924192fa1c06c2db9fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_Shelf.png using Guid(5cbabee44f6a4924192fa1c06c2db9fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '717f49dc45c19f2e9f17e83e852d2ac6') in 0.015637 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_BigFrame.png
+  artifactKey: Guid(546118ce9d7ad5946b80c0acfdda1e21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_BigFrame.png using Guid(546118ce9d7ad5946b80c0acfdda1e21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e451790882963ba912a8ab0c032948d6') in 0.016423 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000144 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_SmallFrame.png
+  artifactKey: Guid(11c5008723c19de48a1284a6d4a2d975) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_SmallFrame.png using Guid(11c5008723c19de48a1284a6d4a2d975) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f4a1041805abfcdcd6b80cc29822817') in 0.020358 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/03.Resources/InGame/Room/Deco/Image_Deco_BedShelf.png
+  artifactKey: Guid(0628fc1627e91fa4c841d0174f650de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Deco/Image_Deco_BedShelf.png using Guid(0628fc1627e91fa4c841d0174f650de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '259a2deb567452d364419ea5c8a09112') in 0.013787 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 175.821400 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Bed_2.png
+  artifactKey: Guid(91b18446afc7fe54bb0518ab94a0d053) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Bed_2.png using Guid(91b18446afc7fe54bb0518ab94a0d053) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5f9dbb4bd6f814f421e894a094fae09') in 0.018822 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Door.png
+  artifactKey: Guid(ef6622450c2a7854cb897a9a706805e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Door.png using Guid(ef6622450c2a7854cb897a9a706805e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f8a08a4d1a919d0265da777d3b8607c') in 0.020711 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Bookcase.png
+  artifactKey: Guid(0b9e8cc08128c5d44beb6c001594f4c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Bookcase.png using Guid(0b9e8cc08128c5d44beb6c001594f4c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f8d86b152caec221ee20fdd4f144abd') in 0.022806 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_3.png
+  artifactKey: Guid(80cb8c2e47c2cf846890837b5a4c8a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_3.png using Guid(80cb8c2e47c2cf846890837b5a4c8a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd585d5b10912e5d91a36f1c2b99c826') in 0.026371 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_BigPlant.png
+  artifactKey: Guid(bcdb39b50d9202a48852454107c161de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_BigPlant.png using Guid(bcdb39b50d9202a48852454107c161de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8f43d73de05e1c302ef1401820d1876') in 0.016281 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_CatTower.png
+  artifactKey: Guid(200ba8dd6ac21a64198e4071a3abc4cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_CatTower.png using Guid(200ba8dd6ac21a64198e4071a3abc4cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c25932b94200b4c5ec8ecb44534ded8f') in 0.019993 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000132 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_2.png
+  artifactKey: Guid(107dc48956223cb479bebdd9aba25f0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_2.png using Guid(107dc48956223cb479bebdd9aba25f0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6d556146f27de26b6242b992159b595') in 0.024167 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_4.png
+  artifactKey: Guid(66bc4c488d1f84e49bad5a5a2aef4306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_4.png using Guid(66bc4c488d1f84e49bad5a5a2aef4306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e20c8438aaa2f2672b93f89d9f217ef7') in 0.025409 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_1.png
+  artifactKey: Guid(415efc3e320c6614fbf80817f35cfdda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Closet_1.png using Guid(415efc3e320c6614fbf80817f35cfdda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cde6763a8848d3a5888a412f3316c1bc') in 0.023938 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Chair.png
+  artifactKey: Guid(39b5464bcdc7a154eb9d5f2f8d1d9cb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Chair.png using Guid(39b5464bcdc7a154eb9d5f2f8d1d9cb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5346476dd5581d04f71b94cff96a4ff5') in 0.018370 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.985186 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Bed_1.png
+  artifactKey: Guid(cf53878db6d079a418511dd0c0d00ded) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Bed_1.png using Guid(cf53878db6d079a418511dd0c0d00ded) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e956a4622975581ee7fc9645a069a7b') in 0.018447 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 112.933432 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Drawer.png
+  artifactKey: Guid(fb60c5459b428bd4f9ce6466d531a5c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Drawer.png using Guid(fb60c5459b428bd4f9ce6466d531a5c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b47672cba090199b1247144073bb58cd') in 0.013997 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.574978 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Kitchen.png
+  artifactKey: Guid(8b9541557b6fc3045a8a228588e83d60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Kitchen.png using Guid(8b9541557b6fc3045a8a228588e83d60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c86697ad724bdffbc26892c2811114f') in 0.037224 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Table.png
+  artifactKey: Guid(b7590ec60359518448fe5e55308a48c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Table.png using Guid(b7590ec60359518448fe5e55308a48c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a794c4f1a8e5f7255e7f3b18244370f') in 0.016940 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.833255 seconds.
+  path: Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Window.png
+  artifactKey: Guid(a488eb155ef478b4190b10375c3ee111) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Furniture/Image_Furniture_Window.png using Guid(a488eb155ef478b4190b10375c3ee111) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36320d5c048e856220b1e3fa25267818') in 0.017928 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 56.382420 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_3.png
+  artifactKey: Guid(fa2b13b689c95ca4d9e1f07fc3e2d433) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_3.png using Guid(fa2b13b689c95ca4d9e1f07fc3e2d433) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c211fad6a49ca83c7644a59704610dc2') in 0.016466 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_FeedBowl_2.png
+  artifactKey: Guid(c8f9fe2542efbe3498f7c960b8e39c48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_FeedBowl_2.png using Guid(c8f9fe2542efbe3498f7c960b8e39c48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a28f037b2b35d1b2eb690612f481203b') in 0.018351 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Flower_2.png
+  artifactKey: Guid(612ec2cabf152204b9c32761263337af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Flower_2.png using Guid(612ec2cabf152204b9c32761263337af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e53a68e61135f7e550550febb59e2f04') in 0.019821 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Diary_2.png
+  artifactKey: Guid(4b260af3e8386e7448049ccecfc9e3f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Diary_2.png using Guid(4b260af3e8386e7448049ccecfc9e3f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72e404103dd7d055c835028bbed6c5ad') in 0.019929 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000259 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_4.png
+  artifactKey: Guid(45893318305de4e41a464c94b7dada84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_4.png using Guid(45893318305de4e41a464c94b7dada84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22cf674dd480451f33d63abe6d7ca32e') in 0.021234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Flower_1.png
+  artifactKey: Guid(53588342df7186c4b9194c3d6aa74f80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Flower_1.png using Guid(53588342df7186c4b9194c3d6aa74f80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '447c30ac04253e3d8062a2fd7cb6f1e6') in 0.020356 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000206 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_FeedBowl_1.png
+  artifactKey: Guid(8157d6a66bd929042bf906443e35d5cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_FeedBowl_1.png using Guid(8157d6a66bd929042bf906443e35d5cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6cc86d4ec2f157f16594f30d6b8cb96') in 0.020201 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000349 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Flower_3.png
+  artifactKey: Guid(8e862552cf4c7e44e835d52d59adf9df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Flower_3.png using Guid(8e862552cf4c7e44e835d52d59adf9df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50f228f6404f39dc863c277e6a47e1d5') in 0.022524 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Diary_1.png
+  artifactKey: Guid(5e428d8f7847fab4f9d3b19fbb550a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Diary_1.png using Guid(5e428d8f7847fab4f9d3b19fbb550a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f14ff003ff1106740ce753521a733f76') in 0.013881 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000280 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_KeyHolder.png
+  artifactKey: Guid(d42a96efdd12de343af729e2fecfb1f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_KeyHolder.png using Guid(d42a96efdd12de343af729e2fecfb1f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fdde7efeea6062c35858bf802799a10') in 0.015849 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 70.365064 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Memo.png
+  artifactKey: Guid(d0616c3b130b1624490c09c1c4bf39e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Memo.png using Guid(d0616c3b130b1624490c09c1c4bf39e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8d3cb2104dbc72568e77d018f3994f5') in 0.017101 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001559 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Package_1.png
+  artifactKey: Guid(322f6d74422a34345bc6dd74d2e8268d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Package_1.png using Guid(322f6d74422a34345bc6dd74d2e8268d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbbcf885516ea2d77d8c6329171d7c87') in 0.018741 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.018167 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Package_2.png
+  artifactKey: Guid(4098c6831ae47314a93c732a541c5490) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Package_2.png using Guid(4098c6831ae47314a93c732a541c5490) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5d1f95196450174092e3418541fa5cc') in 0.012329 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Package_3.png
+  artifactKey: Guid(c6ad77f64954eb641b9f4fb744874989) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Package_3.png using Guid(c6ad77f64954eb641b9f4fb744874989) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '418f5ddade999f3d0097923534702d95') in 0.022001 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 28.549357 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_TableClock_1.png
+  artifactKey: Guid(81be7a3d5d0b07a49b19293fbb2033de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_TableClock_1.png using Guid(81be7a3d5d0b07a49b19293fbb2033de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afc3bf0df12f8b6a6d2c9d2306a916af') in 0.014801 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.469971 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_TableClock_2.png
+  artifactKey: Guid(a12be33a6265f624eb2b37029f1835dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_TableClock_2.png using Guid(a12be33a6265f624eb2b37029f1835dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ffe564df89a7abe29e1d11f43190130') in 0.015420 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Thread.png
+  artifactKey: Guid(ea761491d12b2604cbbe3876edd41f88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Thread.png using Guid(ea761491d12b2604cbbe3876edd41f88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1959e3b17dc5009d08ac312fa863b18') in 0.016857 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.069891 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_TrashCan_1.png
+  artifactKey: Guid(4354888a61e7ae0438514c9d150e3e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_TrashCan_1.png using Guid(4354888a61e7ae0438514c9d150e3e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48cac75674cd88a6182de5fc8062d367') in 0.014857 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 34.781379 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_TrashCan_2.png
+  artifactKey: Guid(cc8953e35f115e540a41702a0a8dc3f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_TrashCan_2.png using Guid(cc8953e35f115e540a41702a0a8dc3f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcd24247c0eec4da0345efc6c8ac5390') in 0.018281 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.027016 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_TrashCan_3.png
+  artifactKey: Guid(cdeeeddbe15eb0540a3660b37a4fef68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_TrashCan_3.png using Guid(cdeeeddbe15eb0540a3660b37a4fef68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c46d4727358bb88baec0dd8b5a85e031') in 0.011123 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 200.205843 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_2.png
+  artifactKey: Guid(237528a324c10624cbf1351efe95e94a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_2.png using Guid(237528a324c10624cbf1351efe95e94a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94651307b0e07ab5f7e1ce6d82771900') in 0.018402 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.034538 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_1.png
+  artifactKey: Guid(8e2f31681300a9549a26b1c10d66accb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Cushion_1.png using Guid(8e2f31681300a9549a26b1c10d66accb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4509d6b017f24932ee06fbaf22deaf1') in 0.011116 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.909565 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_CatFeed.png
+  artifactKey: Guid(45d7d1bf08267f24f9995eb4fde8bdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_CatFeed.png using Guid(45d7d1bf08267f24f9995eb4fde8bdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50140c0ec59d817d442aea3ba43e8ba1') in 0.008437 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000275 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Calendar_3.png
+  artifactKey: Guid(ee44bdf6e36b60349a8328949f161630) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Calendar_3.png using Guid(ee44bdf6e36b60349a8328949f161630) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82171a4ba45a67abbb22a84327ea4713') in 0.014509 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.025366 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Calendar_2.png
+  artifactKey: Guid(ba76fdc8f429d5b42aa38404b42a1497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Calendar_2.png using Guid(ba76fdc8f429d5b42aa38404b42a1497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f2e10e3b7508d5e9e3475b5f8dc668f') in 0.010696 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 69.623104 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Calendar_1.png
+  artifactKey: Guid(dd5cd2a53810f404181f46a466d7ad46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Calendar_1.png using Guid(dd5cd2a53810f404181f46a466d7ad46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf843b682c540b90aa998f9c8d64ed1f') in 0.019297 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.471390 seconds.
+  path: Assets/03.Resources/InGame/Room/Prop/Image_Prop_Block.png
+  artifactKey: Guid(3f812faea76b4234f8dbc27fd7997673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/03.Resources/InGame/Room/Prop/Image_Prop_Block.png using Guid(3f812faea76b4234f8dbc27fd7997673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '989b16514061fc01973c60dd52638d40') in 0.029417 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
