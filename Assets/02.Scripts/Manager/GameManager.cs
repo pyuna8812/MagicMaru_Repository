@@ -5,15 +5,26 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float[] goldUnit;
-    private float gold;
-    public int index;
-    public int tapGold;
-    public float goldPerSec;
-    public Text goldUnitText;
-    public Text goldText;
-    public Text goldPerSecondText;
-    private void Theorem()
+    [SerializeField] private float[] goldUnit; //골드 표기 단위 (A~Z까지 총 26개로 나뉨)
+    private float gold; //플레이어가 보유한 골드
+    public int goldUnitMaximum; //단위별로 표기 가능한 최대 골드
+    public int index; //현재 골드 표기 단위가 위치한 인덱스 (A ~ Z 사이)
+    public int tapGold; //화면 탭으로 획득하는 골드
+    public float goldPerSec; //초당 획득 골드
+    public Text goldUnitText; //골드 A~Z 단위 표기 텍스트
+    public Text goldText; //실제 골드량 텍스트
+    public Text goldPerSecondText; //초당 획득 골드 텍스트
+    private Touch touch;
+    public void BtnEvt_TapGold()
+    {
+        UpdateGold(tapGold, true);
+    }
+    private void UpdateGold(float value, bool isIncrease)
+    {
+        goldUnit[0] += isIncrease ? value : -(value);
+        gold += isIncrease ? value : -(value);
+    }
+    private void UpdateMyGoldUnit()
     {
         for (int i = 0; i < 26; i++)
         {
@@ -39,7 +50,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    private void UpdateMyGoods()
+    private void UpdateMyGold()
     {
         float a = goldUnit[index];
         if(index > 0)
@@ -56,7 +67,7 @@ public class GameManager : MonoBehaviour
         goldUnitText.text = p;
         goldText.text = "실제 골드" + gold.ToString("F1");
     }
-    private IEnumerator Co_GoodsPerSecond()
+    private IEnumerator Co_GoldPerSecond()
     {
         while (true)
         {
@@ -68,30 +79,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Co_GoodsPerSecond());
+        StartCoroutine(Co_GoldPerSecond());
         goldPerSecondText.text = "초당 획득 골드량 : " + goldPerSec.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-        {
-            goldUnit[0] += tapGold;
-            gold += tapGold;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            goldUnit[index] -= tapGold;
-        }
-#endif
-        if(Input.touchCount > 0)
-        {
-            goldUnit[0] += tapGold;
-            gold += tapGold;
-        }
-        Theorem();
-        UpdateMyGoods();
+        UpdateMyGoldUnit();
+        UpdateMyGold();
     }
 }
