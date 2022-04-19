@@ -61,6 +61,9 @@
     <Compile Include="Assets\02.Scripts\ScriptableObject\ObjectInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\07.Effect\BlurEffect\BlurShader.shader" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>D:\2021.1.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
