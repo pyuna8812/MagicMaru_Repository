@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FD_C012DAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 5e28b3ad3e54c5d4cb7d2eb83d298dff, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b15a19c1b732cc2479b4731f40663180, type: 3}
+  - {fileID: 21300000, guid: 32d13135c609bb34db5c01afe6d757aa, type: 3}
+  - {fileID: 21300000, guid: 66d7111968a2a7a4faee48b2b531054b, type: 3}
+  - {fileID: 21300000, guid: 78bbe7e93ddd62e4289e7821324ccf64, type: 3}
+  - {fileID: 21300000, guid: 4e8aad2a003133f4699a2963a9124765, type: 3}
+  - {fileID: 21300000, guid: df2ae91c0b346e44db8981946bbb1581, type: 3}
+  - {fileID: 21300000, guid: b78c956c143c1e04c82b4d1d287648b8, type: 3}
+  - {fileID: 21300000, guid: 1c16130d977f15542ac99e58de028ca1, type: 3}
+  - {fileID: 21300000, guid: b817066d429b2514a8ec5ffc765b73fc, type: 3}
+  - {fileID: 21300000, guid: 12c0aafd4dcb6d54cba37570dae9b332, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 12RArm
+  - 5RLeg
+  - 4LKnee
+  - 6RKnee
+  - 7Body
+  - 3LLeg
+  - 10Tiara
+  - 2LArm
+  - 8Head
+  - 0Shade
+  m_RenderDataMap: {}
+  m_Tag: FD_C012DAtlas
+  m_IsVariant: 0
