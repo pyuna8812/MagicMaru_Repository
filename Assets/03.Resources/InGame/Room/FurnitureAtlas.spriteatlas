@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FurnitureAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 17b89bc36c4eec44696d06bfd7478b3e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0b9e8cc08128c5d44beb6c001594f4c9, type: 3}
+  - {fileID: 21300000, guid: a488eb155ef478b4190b10375c3ee111, type: 3}
+  - {fileID: 21300000, guid: ef6622450c2a7854cb897a9a706805e2, type: 3}
+  - {fileID: 21300000, guid: fb60c5459b428bd4f9ce6466d531a5c4, type: 3}
+  - {fileID: 21300000, guid: 8b9541557b6fc3045a8a228588e83d60, type: 3}
+  - {fileID: 21300000, guid: bcdb39b50d9202a48852454107c161de, type: 3}
+  - {fileID: 21300000, guid: 91b18446afc7fe54bb0518ab94a0d053, type: 3}
+  - {fileID: 21300000, guid: b7590ec60359518448fe5e55308a48c9, type: 3}
+  - {fileID: 21300000, guid: 66bc4c488d1f84e49bad5a5a2aef4306, type: 3}
+  - {fileID: 21300000, guid: 107dc48956223cb479bebdd9aba25f0d, type: 3}
+  - {fileID: 21300000, guid: 39b5464bcdc7a154eb9d5f2f8d1d9cb6, type: 3}
+  - {fileID: 21300000, guid: cf53878db6d079a418511dd0c0d00ded, type: 3}
+  - {fileID: 21300000, guid: 200ba8dd6ac21a64198e4071a3abc4cb, type: 3}
+  - {fileID: 21300000, guid: 80cb8c2e47c2cf846890837b5a4c8a30, type: 3}
+  - {fileID: 21300000, guid: 415efc3e320c6614fbf80817f35cfdda, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Image_Furniture_Bookcase
+  - Image_Furniture_Window
+  - Image_Furniture_Door
+  - Image_Furniture_Drawer
+  - Image_Furniture_Kitchen
+  - Image_Furniture_BigPlant
+  - Image_Furniture_Bed_2
+  - Image_Furniture_Table
+  - Image_Furniture_Closet_4
+  - Image_Furniture_Closet_2
+  - Image_Furniture_Chair
+  - Image_Furniture_Bed_1
+  - Image_Furniture_CatTower
+  - Image_Furniture_Closet_3
+  - Image_Furniture_Closet_1
+  m_RenderDataMap: {}
+  m_Tag: FurnitureAtlas
+  m_IsVariant: 0
