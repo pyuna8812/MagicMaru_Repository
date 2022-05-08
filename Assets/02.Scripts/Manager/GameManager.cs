@@ -2,121 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CAH.GameSystem.BigNumber;
 
 public class GameManager : MonoBehaviour
 {
+    //long타입 길이 : 9,223,372,036,854,775,807 = 922경 3372조 368억 54775807원 -> 모든 가구 오브젝트를 얻은 경우 long타입 최대치 도달까지 106일 걸림
+    //모든 가구를 획득한 경우 초당 획득 골드 : 1,095,350,000,000 = 1조 953억 5천만원
+    public double gold;
+    public double goldPerSec;
+    public double tapGold;
+    public Text goldText;
+    public Text goldPerSecText;
+    public List<Interior> furnitureList = new List<Interior>();
+    public List<Interior> decoList = new List<Interior>();
+    public List<Interior> propList = new List<Interior>();
+    public List<Interior> balconyList = new List<Interior>();
+
     private static GameManager instance;
-    [SerializeField] private double[] goldUnit; //골드 표기 단위 (A~Z까지 총 26개로 나뉨)
-    private double gold; //플레이어가 보유한 골드
-    public int goldUnitMaximum; //단위별로 표기 가능한 최대 골드
-    public int index; //현재 골드 표기 단위가 위치한 인덱스 (A ~ Z 사이)
-    public int tapGold; //화면 탭으로 획득하는 골드
-    public double goldPerSec; //초당 획득 골드
-    public Text goldUnitText; //골드 A~Z 단위 표기 텍스트
-    public Text goldText; //실제 골드량 텍스트
-    public Text goldPerSecondText; //초당 획득 골드 텍스트
-    public Dictionary<string, ObjectInfo> interiorObjs = new Dictionary<string, ObjectInfo>();
-    public Text level;
-    private double UpdateDictionaryInfo()
-    {
-        double goldPerSec = 0;
-        foreach (var item in interiorObjs)
-        {
-            if (item.Value.Unlock)
-            {
-                goldPerSec += item.Value.GoldPerSec;
-            }
-        }
-        return goldPerSec;
-    }
     public static GameManager Instance { get => instance; }
-    public void BtnEvt_UpdateGoldPerSec()
+    private void Awake() //데이터 초기화와 동시에 모든 Manager 클래스의 초기화 함수를 Delegate를 통해 호출하도록 변경해야 한다. 5/4
     {
-        goldPerSec = UpdateDictionaryInfo();
-    }
-    public void BtnEvt_CheckDictionary()
-    {
-        foreach (var item in interiorObjs)
-        {
-            Debug.Log($"{item.Key} : {item.Value.Level}");
-        }
-    }
-    public void Reinforce(string objectName)
-    {
-        interiorObjs[objectName].Level++;
-        level.text = interiorObjs[objectName].Level.ToString();
-    }
-    public void BtnEvt_TapGold()
-    {
-        UpdateGold(tapGold, true);
-    }
-    public void UpdateGoldPerSec(float value, bool isIncrease)
-    {
-        goldPerSec += isIncrease ? value : -(value);
-        goldPerSecondText.text = "초당 획득 골드량 : " + goldPerSec.ToString();
-        UpdateMyGoldUnit();
-    }
-    private void UpdateGold(float value, bool isIncrease)
-    {
-        goldUnit[0] += isIncrease ? value : -(value);
-        gold += isIncrease ? value : -(value);
-    }
-    private void UpdateMyGoldUnit()
-    {
-        for (int i = 0; i < 26; i++)
-        {
-            if (goldUnit[i] > 0)
-            {
-                index = i;
-            }
-        }
-        for (int i = 0; i <= index; i++)
-        {
-            if(goldUnit[i] >= goldUnitMaximum)
-            {
-                goldUnit[i] -= goldUnitMaximum;
-                goldUnit[i + 1] += 1;
-            }
-            if(goldUnit[i] < 0)
-            {
-                if (index > i)
-                {
-                    goldUnit[i + 1] -= 1;
-                    goldUnit[i] += goldUnitMaximum;
-                }
-            }
-        }
-        UpdateMyGold();
-    }
-    private void UpdateMyGold()
-    {
-        double a = goldUnit[index];
-        if(index > 0)
-        {
-            double b = goldUnit[index - 1];
-            a += b / 1000;
-        }
-        if(index == 0)
-        {
-            a += 0;
-        }
-        char unit = (char)(65 + index);
-        string p = (float)(System.Math.Ceiling(a * 100) / 100) + unit.ToString();
-        goldUnitText.text = p;
-        goldText.text = "실제 골드" + gold.ToString("F1");
-    }
-    private IEnumerator Co_GoldPerSecond()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-            gold += goldPerSec;
-            goldUnit[0] += goldPerSec;
-        }
-    }
-    private void Awake()
-    {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -126,16 +32,56 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(instance);
     }
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        StartCoroutine(Co_GoldPerSecond());
+        StartCoroutine(Co_GoldPerSec());
     }
-
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        UpdateMyGoldUnit();
-        //UpdateMyGold();
+        // BigIntegerManager.GetUnit(gold);
+        goldText.text = gold < 1000 ? gold.ToString("F1") : BigIntegerManager.GetUnit((long)gold);
+        goldPerSecText.text =  goldPerSec < 1000 ? goldPerSec.ToString("F1") : BigIntegerManager.GetUnit((long)goldPerSec);
+    }
+    private IEnumerator Co_GoldPerSec()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            gold += goldPerSec;
+        }
+    }
+    public void UpdateGold(long value)
+    {
+        gold += value;
+    }
+    public void UpdateGoldPerSec(double value)
+    {
+        goldPerSec += value;
+    }
+    private void LoadInteriorData()
+    {
+        foreach (var item in furnitureList)
+        {
+            string goldData = PlayerPrefs.GetString($"{item.gameObject.name}"+"gold", $"{item.defaultGoldPerSec}");
+            item.currentGoldPerSec = System.Convert.ToDouble(goldData);
+            string activeData = PlayerPrefs.GetString($"{item.gameObject.name}"+"active", $"{item.isActive}");
+            item.isActive = System.Convert.ToBoolean(activeData);
+        }
+    }
+    private void SaveInteriorData()
+    {
+        foreach (var item in furnitureList)
+        {
+            PlayerPrefs.SetString($"{item.gameObject.name}" + "active", $"{item.isActive}");
+            Debug.Log(PlayerPrefs.GetString($"{item.gameObject.name}" + "active", "none"));
+        }
+    }
+    public void BtnEvt_SaveTest()
+    {
+        SaveInteriorData();
+    }
+    public void BtnEvt_Tapping()
+    {
+        gold += (long)tapGold;
     }
 }
