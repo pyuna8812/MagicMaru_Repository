@@ -21,7 +21,6 @@ public enum ShopState
     Prop,
     Balcony
 }
-
 public class ShopManager : MonoBehaviour
 {
    /* private enum ShopState
@@ -42,15 +41,16 @@ public class ShopManager : MonoBehaviour
     public List<Interior> decoList = new List<Interior>();
     public List<Interior> propList = new List<Interior>();
     public List<Interior> balconyList = new List<Interior>();
-    public GameObject[] currentArray;
-    public GameObject[] furnitureArray;
-    public GameObject[] decoArray;
-    public GameObject[] propArray;
-    public GameObject[] balconyArray;
+    public InteriorUI[] currentArray;
+    public InteriorUI[] furnitureArray;
+    public InteriorUI[] decoArray;
+    public InteriorUI[] propArray;
+    public InteriorUI[] balconyArray;
     public GameObject[] scrollViewArray;
     public Image[] menuImgArray;
     public Sprite[] menuOnArray;
     public Sprite[] menuOffArray;
+    
 
     private static ShopManager instance;
 
@@ -121,7 +121,7 @@ public class ShopManager : MonoBehaviour
             ChangeShopState((int)shopState);
         }
     }
-    private void InitInteriorInfo(GameObject target, Interior interior)
+    private void InitInteriorInfo(InteriorUI target, Interior interior)
     {
         if (interior.isUnLock)
         {
@@ -129,13 +129,13 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            target.transform.Find("Button_LevelUp").transform.GetComponentInChildren<Text>().text = interior.baseCost < 1000 ? interior.baseCost.ToString() : BigIntegerManager.GetUnit(interior.baseCost);
+            target.priceText.text = interior.baseCost < 1000 ? interior.baseCost.ToString() : BigIntegerManager.GetUnit(interior.baseCost);
         }
-        target.transform.Find("Text_Name").GetComponent<Text>().text = interior.name;
+        target.nameText.text = interior.name;
     }
     public void ChangeButtonSprite(Interior target, ButtonSpriteType type)
     {
-        var button = currentArray[currentSelectList.FindIndex(x => x == target)].transform.Find("Button_LevelUp").GetComponent<Image>();
+        var button = currentArray[currentSelectList.FindIndex(x => x == target)].levelUpImage;
         Debug.Log(currentSelectList.FindIndex(x => x == target));
         switch (type)
         {
@@ -155,26 +155,24 @@ public class ShopManager : MonoBehaviour
                 break;
         }
     }
-    private void ChangeInteriorUIBoxToOn(GameObject target, Interior interior)
+    private void ChangeInteriorUIBoxToOn(InteriorUI target, Interior interior)
     {
-        target.transform.Find("Image_Box").GetComponent<Image>().sprite = imageBoxOnSprite;
-        var icon = target.transform.Find("Image_Icon").GetComponent<Image>();
-        icon.sprite = interior.icon;
-        icon.gameObject.SetActive(true);
+        target.boxImage.sprite = imageBoxOnSprite;
+        target.iconImage.sprite = interior.icon;
+        target.iconImage.gameObject.SetActive(true);
         UpdateLevelAndGetText(target, interior);
-        target.transform.Find("Button_LevelUp").GetComponent<Image>().sprite = buttonLevelUpOnSprite;
+        target.levelUpImage.sprite = buttonLevelUpOnSprite;
         if (interior.interiorType == InteriorType.Change)
         {
-            target.transform.Find("Button_Change").gameObject.SetActive(true);
+            target.changeObj.gameObject.SetActive(true);
         }
     }
-    private void UpdateLevelAndGetText(GameObject target, Interior interior)
+    private void UpdateLevelAndGetText(InteriorUI target, Interior interior)
     {
-        var level = target.transform.Find("Text_Level").GetComponent<Text>();
-        level.text = $"{interior.Level}";
-        level.gameObject.SetActive(true);
-        target.transform.Find("Text_Get").GetComponent<Text>().text = interior.currentGoldPerSec < 1000 ? interior.currentGoldPerSec.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)interior.currentGoldPerSec);
-        target.transform.Find("Button_LevelUp").transform.GetComponentInChildren<Text>().text = interior.currentCost < 1000 ? interior.currentCost.ToString("F1") : BigIntegerManager.GetUnit((long)interior.currentCost);
+        target.levelText.text = $"{interior.Level}";
+        target.levelText.gameObject.SetActive(true);
+        target.getText.text = interior.currentGoldPerSec < 1000 ? interior.currentGoldPerSec.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)interior.currentGoldPerSec);
+        target.priceText.text = interior.currentCost < 1000 ? interior.currentCost.ToString("F1") : BigIntegerManager.GetUnit((long)interior.currentCost);
     }
     public void BtnEvt_InteriorInteraction(int index)
     {
@@ -264,7 +262,7 @@ public class ShopManager : MonoBehaviour
                 break;
         }
     }
-    private void UpdateShopState(List<Interior> interiors, GameObject[] array, int index)
+    private void UpdateShopState(List<Interior> interiors, InteriorUI[] array, int index)
     {
         shopState = (ShopState)index;
         currentSelectList = interiors;

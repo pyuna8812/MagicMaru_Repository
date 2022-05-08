@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using CAH.GameSystem.BigNumber;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +9,6 @@ public class GameManager : MonoBehaviour
     public double gold;
     public double goldPerSec;
     public double tapGold;
-    public Text goldText;
-    public Text goldPerSecText;
     public List<Interior> furnitureList = new List<Interior>();
     public List<Interior> decoList = new List<Interior>();
     public List<Interior> propList = new List<Interior>();
@@ -35,12 +31,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Co_GoldPerSec());
-    }
-    private void LateUpdate()
-    {
-        // BigIntegerManager.GetUnit(gold);
-        goldText.text = gold < 1000 ? gold.ToString("F1") : BigIntegerManager.GetUnit((long)gold);
-        goldPerSecText.text =  goldPerSec < 1000 ? goldPerSec.ToString("F1") : BigIntegerManager.GetUnit((long)goldPerSec);
     }
     private IEnumerator Co_GoldPerSec()
     {
@@ -80,7 +70,7 @@ public class GameManager : MonoBehaviour
     {
         SaveInteriorData();
     }
-    public void BtnEvt_Tapping()
+    public void Tapping()
     {
         gold += (long)tapGold;
     }
