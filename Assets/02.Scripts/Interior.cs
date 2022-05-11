@@ -10,9 +10,12 @@ public enum InteriorType
 }
 public class Interior : MonoBehaviour
 {
+    private Sprite currentSprite;
     public ShopState shopState;
     public const int MAX_LEVEL = 100; //인테리어 강화 레벨 최대치
+    public string[] typeNameArray;
     public Sprite[] typeSpriteArray; // 종류가 여러개인 인테리어의 다른 종류 스프라이트
+    public Sprite[] typeIconArray;
     public InteriorType interiorType; //인테리어 타입 (종류가 여러개인지)
     public string name; // 인테리어 이름
     public Sprite icon; // 인테리어 아이콘 이미지
@@ -23,6 +26,18 @@ public class Interior : MonoBehaviour
     public double currentGoldPerSec; // 인테리어 현재 초당 획득 골드
     public bool isActive { get; set; } //가구의 현재 활성화 상태(가구 장착 시 true, 해제 시 false)
     public int Level { get => level; }
+    public Sprite CurrentSprite
+    {
+        get
+        {
+            return currentSprite;
+        }
+        set
+        {
+            currentSprite = value;
+            childObj.GetComponent<SpriteRenderer>().sprite = currentSprite;
+        }
+    }
 
     public bool isUnLock; //가구의 잠금 상태(구매 시 계속 true)
     public bool isOpenReady;
@@ -53,7 +68,9 @@ public class Interior : MonoBehaviour
         if(level < 1)
         {
             currentGoldPerSec = defaultGoldPerSec;
+            currentCost = baseCost;
         }
+        currentSprite = childObj.GetComponent<SpriteRenderer>().sprite;
     }
     private void Start()
     {

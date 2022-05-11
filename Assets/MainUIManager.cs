@@ -10,6 +10,7 @@ public class MainUIManager : MonoBehaviour
     public CameraUtility camera;
     public Text goldText;
     public Text goldPerSecText;
+    //public Text tapGoldText;
     private void Awake()
     {
         camera = Camera.main.GetComponent<CameraUtility>();
@@ -18,6 +19,7 @@ public class MainUIManager : MonoBehaviour
     {
         goldText.text = GameManager.Instance.gold < 1000 ? GameManager.Instance.gold.ToString("F1") : BigIntegerManager.GetUnit((long)GameManager.Instance.gold);
         goldPerSecText.text = GameManager.Instance.goldPerSec < 1000 ? GameManager.Instance.goldPerSec.ToString("F1") : BigIntegerManager.GetUnit((long)GameManager.Instance.goldPerSec);
+       // tapGoldText.text = GameManager.Instance.tapGold < 1000 ? GameManager.Instance.tapGold.ToString("F1") : BigIntegerManager.GetUnit((long)GameManager.Instance.tapGold);
     }
     public void BtnEvt_ActiveShop()
     {

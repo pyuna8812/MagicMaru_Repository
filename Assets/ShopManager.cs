@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using CAH.GameSystem.BigNumber;
 using System.Numerics;
-using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public enum ButtonSpriteType
 {
@@ -50,9 +50,24 @@ public class ShopManager : MonoBehaviour
     public Image[] menuImgArray;
     public Sprite[] menuOnArray;
     public Sprite[] menuOffArray;
-    
+    public Image unlockImage;
+    public Text unlockText;
+    public GameObject unlockUI;
+    public GameObject typeChangeUI;
+    public GameObject typeInfoPool;
+    public ContentSizeFitter typeChangeContentSizeFitter;
+    public Sprite typeApplySprite;
+    public Sprite typeUnappliedSprite;
+    public Image batchReinforcementImage;
+    public Text batchReinforcementText;
+    public Sprite batchReinforcementOnSprite;
+    public Sprite batchReinforcementOffSprite;
 
+    private double batchReinforcementCost;
+    private Interior currentTypeInterior;
     private static ShopManager instance;
+
+    private float rect;
 
     public static ShopManager Instance { get => instance; set => instance = value; }
 
@@ -67,6 +82,8 @@ public class ShopManager : MonoBehaviour
             Destroy(this);
         }
         DontDestroyOnLoad(instance);
+        StartCoroutine(Co_UpdateBatchReinforcementImage());
+        rect = typeChangeContentSizeFitter.transform.GetComponent<RectTransform>().rect.x;
     }
     private bool InitAllInteriorList()
     {
@@ -129,6 +146,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
+            target.levelUpImage.sprite = buttonOpenOffSprite;
             target.priceText.text = interior.baseCost < 1000 ? interior.baseCost.ToString() : BigIntegerManager.GetUnit(interior.baseCost);
         }
         target.nameText.text = interior.name;
@@ -197,6 +215,7 @@ public class ShopManager : MonoBehaviour
             default:
                 break;
         }
+        UpdateBatchReinforcementCost();
     }
     private void InteriorInteractionByInteriorList(List<Interior> interiors, int index)
     {
@@ -217,11 +236,11 @@ public class ShopManager : MonoBehaviour
             return;
         }
         currentSelectList[index].isUnLock = true;
-        GameManager.Instance.UpdateGold(-currentSelectList[index].baseCost);
         currentSelectList[index].LevelUp();
         ChangeInteriorUIBoxToOn(currentArray[index], currentSelectList[index]);
         ChangeButtonSprite(currentSelectList[index], ButtonSpriteType.LevelUpOff);//GameManager.Instance.gold >= interiors[index].currentCost ? ButtonSpriteType.LevelUpOn : ButtonSpriteType.LevelUpOff);
         currentSelectList[index].childObj.SetActive(true);
+        UpdateUnlockUI(currentSelectList[index], true);
     }
     private void LevelUpInterior(int index)
     {
@@ -234,9 +253,65 @@ public class ShopManager : MonoBehaviour
             UpdateLevelAndGetText(currentArray[index], currentSelectList[index]);
         }
     }
-    public void BtnEvt_ChangeType()
+    public void BtnEvt_ChangeType(int index)
     {
-        //DoSomething
+        ChangeType(index);
+    }
+    public void BtnEvt_ChangeInteriorType(int index)
+    {
+        ChangeInteriorTyep(index);
+    }
+    private void ChangeInteriorTyep(int index)
+    {
+        if(currentTypeInterior.CurrentSprite == currentTypeInterior.typeSpriteArray[index])
+        {
+            return;
+        }
+        currentTypeInterior.CurrentSprite = currentTypeInterior.typeSpriteArray[index];
+        for (int i = 0; i < typeChangeContentSizeFitter.transform.childCount; i++)
+        {
+            var obj = typeChangeContentSizeFitter.transform.GetChild(i).GetChild(2).GetComponent<Image>();
+            obj.sprite = typeApplySprite;
+            if (currentTypeInterior.CurrentSprite == currentTypeInterior.typeSpriteArray[i])
+            {
+                obj.sprite = typeUnappliedSprite;
+            }
+        }
+    }
+    private void ChangeType(int index)
+    {
+        if (typeChangeUI.activeSelf)
+        {
+            typeChangeUI.SetActive(false);
+            int count = typeChangeContentSizeFitter.transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                var obj = typeChangeContentSizeFitter.transform.GetChild(0);//parent = typeInfoPool.transform;
+                obj.SetParent(typeInfoPool.transform);
+                obj.SetSiblingIndex(i);
+                obj.gameObject.SetActive(false);              
+            }
+            var r = typeChangeContentSizeFitter.transform.GetComponent<RectTransform>().rect;
+            r.x = rect;
+            return;
+        }
+        currentTypeInterior = currentSelectList[index];
+        typeChangeUI.SetActive(true);
+        typeChangeContentSizeFitter.horizontalFit = currentTypeInterior.typeNameArray.Length > 3 ? ContentSizeFitter.FitMode.MinSize : ContentSizeFitter.FitMode.Unconstrained;
+        for (int i = 0; i < currentTypeInterior.typeSpriteArray.Length; i++)
+        {
+            var obj = typeInfoPool.transform.GetChild(0);
+            obj.transform.SetParent(typeChangeContentSizeFitter.transform);
+            obj.transform.GetChild(0).GetComponent<Image>().sprite = currentTypeInterior.typeIconArray[i];
+            obj.transform.GetChild(1).GetComponent<Text>().text = currentTypeInterior.typeNameArray[i];
+            obj.GetChild(2).GetComponent<Image>().sprite = typeApplySprite;
+            if (currentTypeInterior.CurrentSprite == currentTypeInterior.typeSpriteArray[i])
+            {
+                obj.GetChild(2).GetComponent<Image>().sprite = typeUnappliedSprite;
+            }
+            obj.gameObject.SetActive(true);
+        }
+       // currentSelectList[index]
     }
     public void BtnEvt_ChangeShopState(int index)
     {
@@ -266,6 +341,7 @@ public class ShopManager : MonoBehaviour
     {
         shopState = (ShopState)index;
         currentSelectList = interiors;
+        UpdateBatchReinforcementCost();
         currentArray = array;
         for (int i = 0; i < scrollViewArray.Length; i++)
         {
@@ -275,8 +351,96 @@ public class ShopManager : MonoBehaviour
         scrollViewArray[index].SetActive(true);
         menuImgArray[index].sprite = menuOnArray[index];
     }
+    private void UpdateUnlockUI(Interior interior, bool isEnlarge)
+    {
+        if (isEnlarge)
+        {
+            unlockImage.transform.parent.localScale = UnityEngine.Vector3.zero;
+            unlockImage.sprite = interior.icon;
+            unlockText.text = interior.name;
+            unlockUI.SetActive(isEnlarge);
+            unlockImage.transform.parent.DOScale(UnityEngine.Vector3.one, 0.5f).SetEase(Ease.OutBounce);
+        }
+        else
+        {
+            unlockUI.SetActive(isEnlarge);
+        }
+    }
+    public void BtnEvt_BatchReinforcement()
+    {
+        BatchReinforcement();
+    }
+    private void BatchReinforcement()
+    {
+        if(GameManager.Instance.gold < batchReinforcementCost)
+        {
+            return;
+        }
+       /* for (int i = 0; i < currentSelectList.Count; i++)
+        {
+            if (currentSelectList[i].isUnLock)
+            {
+                currentSelectList[i].LevelUp();
+
+            }
+        }*/
+        foreach (var item in currentSelectList)
+        {
+            if (item.isUnLock)
+            {
+                item.LevelUp();
+                UpdateLevelAndGetText(currentArray[currentSelectList.FindIndex(x => x == item)], item);
+            }
+        }
+        UpdateBatchReinforcementCost();
+    }
+    private void UpdateBatchReinforcementCost()
+    {
+        batchReinforcementCost = 0;
+        foreach (var item in currentSelectList)
+        {
+            if (item.isUnLock)
+            {
+                batchReinforcementCost += item.currentCost;
+            }
+        }
+        batchReinforcementText.text = batchReinforcementCost < 1000 ? batchReinforcementCost.ToString("F1") : BigIntegerManager.GetUnit((long)batchReinforcementCost);
+    }
+    private IEnumerator Co_UpdateBatchReinforcementImage()
+    {
+        bool isReady = false;
+        yield return new WaitUntil(() => GameManager.Instance != null);
+        while (true)
+        {
+            yield return null;
+            if (currentSelectList != null)
+            {
+                /*if(batchReinforcementCost <= 0)
+                {
+                    batchReinforcementImage.sprite = batchReinforcementOffSprite;
+                    continue;
+                }*/
+                if (GameManager.Instance.gold >= batchReinforcementCost && !isReady)
+                {
+                    isReady = true;
+                    batchReinforcementImage.sprite = batchReinforcementOnSprite;
+                }
+                else if (GameManager.Instance.gold < batchReinforcementCost && isReady)
+                {
+                    isReady = false;
+                    batchReinforcementImage.sprite = batchReinforcementOffSprite;
+                }
+            }
+        }
+    }
     public void LateUpdate()
     {
-        
+        if (unlockUI.activeSelf)
+        {
+            if(Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0)
+            {
+                UpdateUnlockUI(null, false);
+            }
+        }
     }
 }
