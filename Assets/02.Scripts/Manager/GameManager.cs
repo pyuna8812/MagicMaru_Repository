@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public double gold;
     public double goldPerSec;
     public double tapGold;
+    /// <summary>
+    /// 0 = tapGoldLevel, 1 ~ = SkillLevel
+    /// </summary>
+    public int[] skillLevelArray = { 1, 1, 1, 1, 1 }; // 모든 스킬들의 레벨을 담을 배열 (0 = 탭골드, 1부터는 스킬 UI 왼쪽 상단 -> 순으로)
+
     public List<Interior> furnitureList = new List<Interior>();
     public List<Interior> decoList = new List<Interior>();
     public List<Interior> propList = new List<Interior>();
@@ -40,13 +45,18 @@ public class GameManager : MonoBehaviour
             gold += goldPerSec;
         }
     }
-    public void UpdateGold(long value)
+    public void UpdateGold(double value)
     {
         gold += value;
     }
     public void UpdateGoldPerSec(double value)
     {
         goldPerSec += value;
+    }
+    public void ReinforceTapGold()
+    {
+        tapGold = tapGold * 1.2f;
+        skillLevelArray[0]++;
     }
     private void LoadInteriorData()
     {
