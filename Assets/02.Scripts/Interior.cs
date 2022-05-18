@@ -48,7 +48,7 @@ public class Interior : MonoBehaviour
     public bool LevelUp() //가구 레벨업 함수. 레벨을 1 올려주고 현재 레벨에 맞게 강화비용, 초당 획득 골드 업데이트 후 true 리턴
     {
         level++;
-        GameManager.Instance.UpdateGold((long)-currentCost);
+        GameManager.Instance.UpdateGold(-currentCost);
         UpdateCurrentCostByLevel();
         UpdateCurrentGoldPerSecByLevel();
         GameManager.Instance.UpdateGoldPerSec(currentGoldPerSec);

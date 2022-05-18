@@ -1091,6 +1091,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64680263}
   m_CullTransparentMesh: 1
+--- !u!1 &68010448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1674161413164302, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
+  m_PrefabInstance: {fileID: 2138609183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &68010450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68010448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef6be6d93abacb4eb671c6c10082033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonStatus:
+    maxHp: 500
+    currentHp: 0
+    minAttack: 100
+    maxAttack: 250
 --- !u!1 &77355099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,9 +2094,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 2789134629193643062}
+  skillPopUp: {fileID: 6863131541534276141}
   camera: {fileID: 0}
   goldText: {fileID: 1609318375421683346}
   goldPerSecText: {fileID: 7661525792532438708}
+  playerHpSlider: {fileID: 5515173245217577878}
+  player: {fileID: 0}
 --- !u!1 &150589326
 GameObject:
   m_ObjectHideFlags: 0
@@ -14115,6 +14140,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717979477}
   m_CullTransparentMesh: 1
+--- !u!1 &730922130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730922131}
+  - component: {fileID: 730922132}
+  m_Layer: 0
+  m_Name: SkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &730922131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730922130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1361552961}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730922132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730922130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1feea08dedfe39b4981d5f26bb64f23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tapGoldReinforcePrice: 0
+  tapGoldText: {fileID: 230558753347475286}
+  tapGoldLevelText: {fileID: 8111044331703913746}
+  tapGoldReinforcePriceText: {fileID: 4377766180962914488}
+  tapGoldReinforceImage: {fileID: 9014024107838545965}
+  tapGoldReinforceOnSprite: {fileID: 21300000, guid: c85f5c50cbddb904a8285dd8458d295e, type: 3}
+  tapGoldReinforceOffSprite: {fileID: 21300000, guid: 1108198e66c42c64e816cbcd44270817, type: 3}
 --- !u!1 &737817285
 GameObject:
   m_ObjectHideFlags: 0
@@ -26043,6 +26118,7 @@ Transform:
   - {fileID: 1744310428}
   - {fileID: 146704735}
   - {fileID: 494087257}
+  - {fileID: 730922131}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32047,8 +32123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: 0
-  goldPerSec: 10000000000
-  tapGold: 2
+  goldPerSec: 0.5
+  tapGold: 10
+  skillLevelArray: 0100000001000000010000000100000001000000
   furnitureList:
   - {fileID: 369868645}
   - {fileID: 42457208}
@@ -39555,7 +39632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497445806554122, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.52
+      value: -1.69
       objectReference: {fileID: 0}
     - target: {fileID: 4497445806554122, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39599,11 +39676,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4694564352632930, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 4694564352632930, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 95539518672861730, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212625381362203560, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
       propertyPath: m_FlipX
@@ -40457,9 +40538,9 @@ RectTransform:
   m_Father: {fileID: 8086624791668304217}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 140.5, y: -390.5}
   m_SizeDelta: {x: 281, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1236277646557104656
@@ -40523,7 +40604,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7860043882283713481}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 146704736}
+        m_TargetAssemblyTypeName: MainUIManager, Assembly-CSharp
+        m_MethodName: BtnEvt_ActiveSkillPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1410928280953286040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41078,7 +41171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3fef23666cdc5034c8782534ad33e2f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1108198e66c42c64e816cbcd44270817, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -41121,7 +41214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &2982671829099822837
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41406,7 +41499,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9014024107838545965}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 730922132}
+        m_TargetAssemblyTypeName: SkillManager, Assembly-CSharp
+        m_MethodName: BtnEvt_ReinforceSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &3747013753371511177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42001,9 +42106,9 @@ RectTransform:
   m_Father: {fileID: 8086624791668304217}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 140.5, y: -54.5}
   m_SizeDelta: {x: 281, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5319037105776971917
@@ -42150,9 +42255,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 500
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 500
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -42691,9 +42796,9 @@ RectTransform:
   m_Father: {fileID: 8086624791668304217}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 140.5, y: -166.5}
   m_SizeDelta: {x: 281, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6519690005609647432
@@ -43039,7 +43144,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 968879754679706271}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 146704736}
+        m_TargetAssemblyTypeName: MainUIManager, Assembly-CSharp
+        m_MethodName: BtnEvt_ActiveSkillPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &7143197699595291469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43851,9 +43968,9 @@ RectTransform:
   m_Father: {fileID: 8086624791668304217}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 140.5, y: -278.5}
   m_SizeDelta: {x: 281, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8406048015375336346
@@ -44293,7 +44410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c85f5c50cbddb904a8285dd8458d295e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1108198e66c42c64e816cbcd44270817, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
