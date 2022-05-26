@@ -41,6 +41,10 @@ public class MainUIManager : MonoBehaviour
     {
         GameManager.Instance.Tapping();
     }
+    public void BtnEvt_FixCam()
+    {
+        FixCam();
+    }
     public void EventTrigger_MoveLeft(bool isLeft)
     {
         camera.isLeft = isLeft;
@@ -48,6 +52,10 @@ public class MainUIManager : MonoBehaviour
     public void EventTrigger_MoveRight(bool isRight)
     {
         camera.isRight = isRight;
+    }
+    private void FixCam()
+    {
+        camera.transform.position = new Vector3(player.transform.position.x, 0, -10);
     }
     private IEnumerator Co_UpdatePlayerHpBar()
     {

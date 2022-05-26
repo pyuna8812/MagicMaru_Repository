@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CameraUtility : MonoBehaviour
 {
-    public float moveSpeed;
     public const float LEFT_MAX = -30.2f;
     public const float RiGHT_MAX = 30.2f;
+    public float moveSpeed;
     public bool isLeft { get; set; }
     public bool isRight { get; set; }
 

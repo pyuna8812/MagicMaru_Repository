@@ -837,6 +837,7 @@ m_ResolvedPackages:
     - 1.14.15
     - 1.14.16
     - 1.14.17
+    - 1.14.18
     - 1.15.1
     - 1.15.4
     - 1.15.7
@@ -846,6 +847,7 @@ m_ResolvedPackages:
     - 1.15.15
     - 1.15.16
     - 1.15.17
+    - 1.15.18
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -871,6 +873,7 @@ m_ResolvedPackages:
     - 1.14.15
     - 1.14.16
     - 1.14.17
+    - 1.14.18
     - 1.15.1
     - 1.15.4
     - 1.15.7
@@ -880,6 +883,7 @@ m_ResolvedPackages:
     - 1.15.15
     - 1.15.16
     - 1.15.17
+    - 1.15.18
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -1701,6 +1705,7 @@ m_ResolvedPackages:
     - 1.7.5
     - 1.7.6
     - 1.7.7
+    - 1.7.8
     - 1.8.0-pre.1
     compatible:
     - 1.6.1
@@ -1710,6 +1715,7 @@ m_ResolvedPackages:
     - 1.7.5
     - 1.7.6
     - 1.7.7
+    - 1.7.8
     verified: 1.6.1
   dependencies:
   - name: com.unity.ugui
@@ -3795,6 +3801,7 @@ m_ResolvedPackages:
     - 7.0.0-pre.3
     - 7.0.0-pre.4
     - 7.0.0
+    - 8.0.0-pre.1
     compatible:
     - 5.0.0
     verified: 5.0.0
