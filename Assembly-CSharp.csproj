@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\MonsterPool.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\02.Scripts\Manager\BigIntegerManager.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleAudio.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets\02.Scripts\InteriorUI.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\02.Scripts\Interior.cs" />
+    <Compile Include="Assets\02.Scripts\Monster.cs" />
     <Compile Include="Assets\02.Scripts\Gold.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
