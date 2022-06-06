@@ -20,23 +20,30 @@ public class MonsterPool : MonoBehaviour
         while (true)
         {
             yield return null;
+
             float rand = Random.Range(0f, 100f);
             print(rand);
             if(rand < 95)
             {
-                var monster = monsterList.Find(x => x.name.Contains("Monster"));
-                monsterList.Remove(monster);
-                GameManager.Instance.monsterList.Add(monster);
-                monster.ResetStatus();
-                summonMonster(monster.gameObject);
+                if(GameManager.Instance.monsterList.Count < 10)
+                {
+                    var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.name.Contains("Monster"));
+                    print(monster.name);
+                    GameManager.Instance.monsterList.Add(monster);
+                    monster.ResetStatus();
+                    summonMonster(monster.gameObject);
+                }
             }
             else
             {
-                var monster = monsterList.Find(x => x.name.Contains("Boss"));
-                monsterList.Remove(monster);
-                GameManager.Instance.monsterList.Add(monster);
-                monster.ResetStatus();
-                summonMonster(monster.gameObject);
+                if(GameManager.Instance.bossList.Count < 3)
+                {
+                    var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.name.Contains("Boss"));
+                    monsterList.Remove(monster);
+                    GameManager.Instance.bossList.Add(monster);
+                    monster.ResetStatus();
+                    summonMonster(monster.gameObject);
+                }
             }
             summonDelay = Random.Range(5f, 12f);
             yield return new WaitForSeconds(summonDelay);

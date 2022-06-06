@@ -12,17 +12,18 @@ public struct CommonStatus
     public float maxAttack;
     public float moveSpeed;
 }
+public enum State
+{
+    Idle,
+    Move,
+    Fight,
+    Die // 죽으면 30초 뒤 부활. 죽은 상태에서 게임 종료 시 카운트다운 종료 시점과 동일
+}
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     public const float LEFT_MAX = -37.2f;
     public const float RIGHT_MAX = 37.2f;
-    private enum State
-    {
-        Idle,
-        Move,
-        Fight,
-        Die // 죽으면 30초 뒤 부활. 죽은 상태에서 게임 종료 시 카운트다운 종료 시점과 동일
-    }
     public float attackDelay;
     public CommonStatus commonStatus;
     public Animator animator;
@@ -32,9 +33,10 @@ public class Player : MonoBehaviour
     private Vector3 moveDirection;
     private Vector3 rayDirection;
     private int layer;
-
+    public Transform rig;
     private void Awake()
     {
+        instance = this;
         layer = (-1) - (1 << LayerMask.NameToLayer("Player"));
         commonStatus.currentHp = commonStatus.maxHp;
     }
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator Co_AnimTransition()
     {
+        float damage = 0;
         while (true)
         {
             yield return null;
@@ -74,9 +77,13 @@ public class Player : MonoBehaviour
                     {
                         animator.SetBool("IsMove", false);
                     }
-                    Attack();
+                    animator.SetTrigger("Attack");
+                    yield return new WaitForSeconds(0.5f);
+                    Attack(damage);
+                    //Invoke("Attack", attackDelay);
                     if (attackTarget.commonStatus.currentHp <= 0)
                     {
+                        attackTarget = null;
                         yield return new WaitForSeconds(attackDelay);
                         state = State.Idle;
                         currentTarget = null;
@@ -138,22 +145,18 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(0f, 5f));
         }
     }
-    private void Attack()
+    private void Attack(float damage)
     {
-        animator.SetTrigger("Attack");
-        attackTarget.DecreaseHp(Random.Range(commonStatus.minAttack, commonStatus.maxAttack));
+        damage = Random.Range(commonStatus.minAttack, commonStatus.maxAttack);
+        attackTarget.DecreaseHp(damage);
+        MainUIManager.instance.ShowDamageUI(attackTarget.transform.position, Mathf.Ceil(damage).ToString(), true);
     }
     private void MovePlayer(Vector3 dir, bool isLeft)
     {
         moveDirection = dir;
         rayDirection = dir;
-        transform.rotation = ReversalObjectY(isLeft);
+        transform.rotation = GameManager.Instance.ReversalObjectY(isLeft);
         state = State.Move;
-    }
-    private Quaternion ReversalObjectY(bool left)
-    {
-        Quaternion q = left? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0,180,0);
-        return q;
     }
     private Monster FindNearestMonster()
     {
@@ -167,14 +170,14 @@ public class Player : MonoBehaviour
     }
     private void LateUpdate()
     {
-
+        rig.localRotation = Quaternion.Euler(0, 0, 0);
     }
     // Update is called once per frame
     void Update()
     {
-        if(currentTarget && state != State.Fight)
+        if(currentTarget && state != State.Fight && state != State.Die)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 2f, layer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 1.5f, layer);
             if (hit.collider)
             {
                 attackTarget = hit.collider.GetComponent<Monster>();
@@ -184,6 +187,11 @@ public class Player : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(transform.position, moveDirection * 2f, Color.red);
+        Debug.DrawRay(transform.position, moveDirection * 1.5f, Color.red);
+    }
+    public void DecreaseHp(float value)
+    {
+        value = Mathf.Ceil(value);
+        commonStatus.currentHp -= value;
     }
 }

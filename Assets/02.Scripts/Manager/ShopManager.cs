@@ -372,14 +372,6 @@ public class ShopManager : MonoBehaviour
         {
             return;
         }
-       /* for (int i = 0; i < currentSelectList.Count; i++)
-        {
-            if (currentSelectList[i].isUnLock)
-            {
-                currentSelectList[i].LevelUp();
-
-            }
-        }*/
         foreach (var item in currentSelectList)
         {
             if (item.isUnLock)
@@ -416,12 +408,12 @@ public class ShopManager : MonoBehaviour
                     batchReinforcementImage.sprite = batchReinforcementOffSprite;
                     continue;
                 }
-                if (GameManager.Instance.gold >= batchReinforcementCost && !isReady)
+                if (GameManager.Instance.gold >= batchReinforcementCost)// && !isReady)
                 {
                     isReady = true;
                     batchReinforcementImage.sprite = batchReinforcementOnSprite;
                 }
-                else if (GameManager.Instance.gold < batchReinforcementCost && isReady)
+                else if (GameManager.Instance.gold < batchReinforcementCost) //&& isReady)
                 {
                     isReady = false;
                     batchReinforcementImage.sprite = batchReinforcementOffSprite;

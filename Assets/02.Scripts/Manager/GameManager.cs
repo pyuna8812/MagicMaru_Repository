@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public List<Interior> balconyList = new List<Interior>();
 
     public List<Monster> monsterList = new List<Monster>();
+    public List<Monster> bossList = new List<Monster>();
 
     private DateTime exitTime;
     private DateTime startTime;
@@ -96,6 +97,11 @@ public class GameManager : MonoBehaviour
     public void Tapping()
     {
         gold += (long)tapGold;
+    }
+    public Quaternion ReversalObjectY(bool left)
+    {
+        Quaternion q = left ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
+        return q;
     }
     private void Update()
     {
