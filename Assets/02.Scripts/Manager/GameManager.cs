@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         exitTime = DateTime.Parse(PlayerPrefs.GetString("Time", DateTime.Now.ToString()));
         timeInterval = (startTime - exitTime);
         timeIntervalSecond = (int)timeInterval.TotalSeconds;
-        UpdateGold(goldPerSec * timeIntervalSecond);
+        //UpdateGold(goldPerSec * timeIntervalSecond);
     }
     private void Start()
     {
@@ -77,9 +77,9 @@ public class GameManager : MonoBehaviour
         foreach (var item in furnitureList)
         {
             string goldData = PlayerPrefs.GetString($"{item.gameObject.name}"+"gold", $"{item.defaultGoldPerSec}");
-            item.currentGoldPerSec = System.Convert.ToDouble(goldData);
+            item.currentGoldPerSec = Convert.ToDouble(goldData);
             string activeData = PlayerPrefs.GetString($"{item.gameObject.name}"+"active", $"{item.isActive}");
-            item.isActive = System.Convert.ToBoolean(activeData);
+            item.isActive = Convert.ToBoolean(activeData);
         }
     }
     private void SaveInteriorData()
