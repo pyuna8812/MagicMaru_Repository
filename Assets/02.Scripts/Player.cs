@@ -33,7 +33,14 @@ public class Player : MonoBehaviour
     private Vector3 moveDirection;
     private Vector3 rayDirection;
     private int layer;
+    public float resurrectionCount = 30f;
     public Transform rig;
+    public bool isDie;
+    public Sprite dieSprite;
+    public Sprite normalSprite;
+    public SpriteRenderer headSprite;
+    public State State { get => state; set => state = value; }
+
     private void Awake()
     {
         instance = this;
@@ -80,7 +87,6 @@ public class Player : MonoBehaviour
                     animator.SetTrigger("Attack");
                     yield return new WaitForSeconds(0.5f);
                     Attack(damage);
-                    //Invoke("Attack", attackDelay);
                     if (attackTarget.commonStatus.currentHp <= 0)
                     {
                         attackTarget = null;
@@ -92,8 +98,7 @@ public class Player : MonoBehaviour
                     yield return new WaitForSeconds(attackDelay);
                     break;
                 case State.Die:
-                    animator.SetTrigger("Die");
-                    state = State.Idle;
+                    //어택 딜레이에 걸려서 외부 코루틴으로 작성
                     break;
                 default:
                     break;
@@ -105,16 +110,15 @@ public class Player : MonoBehaviour
         while (true)
         {
             yield return null;
-            if (state == State.Fight)
+            if (state == State.Fight || isDie)
             {
                 continue;
             }
-            if (GameManager.Instance.monsterList.Count > 0)
+            if (GameManager.Instance.monsterList.Count > 0 || GameManager.Instance.bossList.Count > 0)
             {
                 if (!currentTarget)
                 {
                     currentTarget = FindNearestMonster();
-
                 }
                 if (transform.position.x - currentTarget.transform.position.x > 0)
                 {
@@ -165,8 +169,26 @@ public class Player : MonoBehaviour
             return Vector3.Distance(transform.position, x.transform.position);
         }
         ).FirstOrDefault();
-        print(monster);
-        return monster;
+        Monster boss = GameManager.Instance.bossList.OrderBy(x =>
+        {
+            return Vector3.Distance(transform.position, x.transform.position);
+        }).FirstOrDefault();
+        if(monster == null)
+        {
+            return boss;
+        }
+        else if (boss == null)
+        {
+            return monster;
+        }
+        if(Vector3.Distance(transform.position,monster.transform.position) >= Vector3.Distance(transform.position, boss.transform.position))
+        {
+            return boss;
+        }
+        else
+        {
+            return monster;
+        }
     }
     private void LateUpdate()
     {
@@ -177,6 +199,10 @@ public class Player : MonoBehaviour
     {
         if(currentTarget && state != State.Fight && state != State.Die)
         {
+            if (isDie)
+            {
+                return;
+            }
             RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 1.5f, layer);
             if (hit.collider)
             {
@@ -193,5 +219,27 @@ public class Player : MonoBehaviour
     {
         value = Mathf.Ceil(value);
         commonStatus.currentHp -= value;
+        if(commonStatus.currentHp <= 0)
+        {
+            if (isDie)
+            {
+                return;
+            }
+            StartCoroutine(Co_Die());
+        }
+    }
+    private IEnumerator Co_Die()
+    {
+        state = State.Die;
+        animator.SetTrigger("Die");
+        isDie = true;
+        headSprite.sprite = dieSprite;
+        yield return new WaitForSeconds(resurrectionCount);
+        headSprite.sprite = normalSprite;
+        commonStatus.currentHp = commonStatus.maxHp;
+        animator.SetTrigger("Resurrection");
+        state = State.Idle;
+        yield return new WaitForSeconds(2f);
+        isDie = false;
     }
 }

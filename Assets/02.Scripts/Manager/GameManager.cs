@@ -32,15 +32,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; }
     private void Awake() //데이터 초기화와 동시에 모든 Manager 클래스의 초기화 함수를 Delegate를 통해 호출하도록 변경해야 한다. 5/4
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-        DontDestroyOnLoad(instance);
+        instance = this;
         startTime = DateTime.Now;
         exitTime = DateTime.Parse(PlayerPrefs.GetString("Time", DateTime.Now.ToString()));
         timeInterval = (startTime - exitTime);
@@ -105,7 +97,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+       /* if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayerPrefs.SetString("Time", DateTime.Now.ToString());
             print($"저장 시간 : {DateTime.Now}");
@@ -113,6 +105,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             print($"저장된 시간 : {exitTime}, 현재 시간 : {startTime}, 지난 시간 : {timeIntervalSecond}");
-        }
+        }*/
     }
 }

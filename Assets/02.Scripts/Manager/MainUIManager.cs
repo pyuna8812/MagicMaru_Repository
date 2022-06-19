@@ -9,6 +9,7 @@ using DG.Tweening;
 public class MainUIManager : MonoBehaviour
 {
     public static MainUIManager instance;
+    public GameObject setting;
     public GameObject shop;
     public GameObject skillPopUp;
     public CameraUtility camera;
@@ -18,17 +19,23 @@ public class MainUIManager : MonoBehaviour
     public Text playerHpText;
     public List<Transform> playerDamageUI = new List<Transform>();
     public List<Transform> monsterDamageUI = new List<Transform>();
+    public GameObject dieUI;
+    private Text resurrectionCountTxt;
     private Vector3 playerDamageUIPos;
     private Vector3 monsterDamageUIPos;
+
+    private float resurrectionCount;
     //public Text tapGoldText;
     private void Awake()
     {
         instance = this;
         camera = Camera.main.GetComponent<CameraUtility>();
+        resurrectionCountTxt = dieUI.GetComponentInChildren<Text>();
     }
     private void Start()
     {
         StartCoroutine(Co_UpdatePlayerHpBar());
+        resurrectionCount = Player.instance.resurrectionCount;
     }
     private void LateUpdate()
     {
@@ -50,7 +57,6 @@ public class MainUIManager : MonoBehaviour
                 monsterDamageUIPos = new Vector3(monsterDamageUIPos.x, monsterDamageUIPos.y + 0.001f);
             }
         }
-
     }
     public void BtnEvt_ActiveShop()
     {
@@ -67,6 +73,10 @@ public class MainUIManager : MonoBehaviour
     public void BtnEvt_FixCam()
     {
         FixCam();
+    }
+    public void BtnEvt_ActiveSetting()
+    {
+        setting.SetActive(!setting.activeSelf);
     }
     public void EventTrigger_MoveLeft(bool isLeft)
     {
@@ -88,6 +98,20 @@ public class MainUIManager : MonoBehaviour
             yield return null;
             playerHpSlider.value = Player.instance.commonStatus.currentHp;
             playerHpText.text = playerHpSlider.value.ToString();
+            if(Player.instance.State == State.Die)
+            {
+                print("이프문 들어옴");
+                dieUI.SetActive(true);
+                while (resurrectionCount > 0)
+                {
+                    resurrectionCount -= Time.deltaTime;
+                    resurrectionCountTxt.text = Mathf.Ceil(resurrectionCount).ToString();
+                    yield return null;
+                }
+                dieUI.SetActive(false);
+                resurrectionCount = Player.instance.resurrectionCount;
+                yield return new WaitForSeconds(2f);
+            }
         }
     }
     public void ShowDamageUI(Vector3 position,string value, bool isPlayer)

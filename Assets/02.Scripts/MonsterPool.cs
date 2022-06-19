@@ -28,6 +28,10 @@ public class MonsterPool : MonoBehaviour
                 if(GameManager.Instance.monsterList.Count < 10)
                 {
                     var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.name.Contains("Monster"));
+                    if(monster == null)
+                    {
+                        continue;
+                    }
                     print(monster.name);
                     GameManager.Instance.monsterList.Add(monster);
                     monster.ResetStatus();

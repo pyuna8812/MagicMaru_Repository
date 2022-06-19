@@ -71,15 +71,7 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-        DontDestroyOnLoad(instance);
+        instance = this;
         StartCoroutine(Co_UpdateBatchReinforcementImage());
     }
     private bool InitAllInteriorList()

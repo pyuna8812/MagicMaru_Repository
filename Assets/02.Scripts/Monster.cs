@@ -34,7 +34,7 @@ public class Monster : MonoBehaviour
     {
         box.enabled = true;
         StartCoroutine(Co_AnimTransition());
-        if(monsterType == MonsterType.Normal)
+        if(monsterType == MonsterType.Normal || monsterType == MonsterType.Boss && Player.instance.isDie)
         {
             StartCoroutine(Co_SelectBehavior());
             return;
@@ -66,6 +66,7 @@ public class Monster : MonoBehaviour
             state = State.Fight;
         }
         commonStatus.currentHp -= value;
+        
         if(commonStatus.currentHp <= 0)
         {
             state = State.Die;
@@ -125,6 +126,14 @@ public class Monster : MonoBehaviour
                     {
                         yield return new WaitForSeconds(attackDelay);
                     }
+                    if(Player.instance.commonStatus.currentHp <= 0)
+                    {
+                        state = State.Idle;
+                        if(monsterType == MonsterType.Boss)
+                        {
+                            StartCoroutine(Co_SelectBehavior());
+                        }
+                    }
                     break;
                 case State.Die:
                     animator.SetTrigger("Die");
@@ -141,6 +150,23 @@ public class Monster : MonoBehaviour
     {
         while (true)
         {
+            if(monsterType == MonsterType.Boss)
+            {
+                if (!Player.instance.isDie)
+                {
+                    if (CheckDirection() < 0)
+                    {
+                        MoveMonster(Vector3.left, true);
+                        rayDirection = Vector3.left;
+                    }
+                    else
+                    {
+                        MoveMonster(Vector3.right, false);
+                        rayDirection = Vector3.right;
+                    }
+                    yield break;
+                }
+            }
             yield return null;
             if (state == State.Fight || state == State.Die)
             {
@@ -178,7 +204,7 @@ public class Monster : MonoBehaviour
     }
     private void Update()
     {
-        if(monsterType == MonsterType.Normal)
+        if(monsterType == MonsterType.Normal || Player.instance.isDie)
         {
             return;
         }
