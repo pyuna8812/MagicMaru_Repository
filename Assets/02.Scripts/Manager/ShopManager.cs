@@ -211,11 +211,13 @@ public class ShopManager : MonoBehaviour
         if (!interiors[index].isUnLock && interiors[index].isOpenReady)
         {
             OpenInterior(index);
+            SoundManager.instance.PlaySE_UI(4);
             return;
         }
         if (interiors[index].isUnLock)
         {
             LevelUpInterior(index);
+            SoundManager.instance.PlaySE_UI(3);
         }
     }
     private void OpenInterior(int index)
@@ -256,6 +258,7 @@ public class ShopManager : MonoBehaviour
         {
             return;
         }
+        SoundManager.instance.PlaySE_UI(0);
         currentTypeInterior.CurrentSprite = currentTypeInterior.typeSpriteArray[index];
         for (int i = 0; i < typeChangeContentSizeFitter.transform.childCount; i++)
         {
@@ -280,9 +283,11 @@ public class ShopManager : MonoBehaviour
                 obj.gameObject.SetActive(false);  
             }
             typeChangeUI.SetActive(false);
+            SoundManager.instance.PlaySE_UI(1);
             typeChangeContentSizeFitter.GetComponent<RectTransform>().sizeDelta = UnityEngine.Vector3.zero;
             return;
         }
+        SoundManager.instance.PlaySE_UI(0);
         currentTypeInterior = currentSelectList[index];
         typeChangeUI.SetActive(true);
         typeChangeContentSizeFitter.horizontalFit = currentTypeInterior.typeNameArray.Length > 3 ? ContentSizeFitter.FitMode.MinSize : ContentSizeFitter.FitMode.Unconstrained;
@@ -304,6 +309,7 @@ public class ShopManager : MonoBehaviour
     public void BtnEvt_ChangeShopState(int index)
     {
         ChangeShopState(index);
+        SoundManager.instance.PlaySE_UI(0);
     }
     private void ChangeShopState(int index)
     {
@@ -372,6 +378,7 @@ public class ShopManager : MonoBehaviour
                 UpdateLevelAndGetText(currentArray[currentSelectList.FindIndex(x => x == item)], item);
             }
         }
+        SoundManager.instance.PlaySE_UI(3);
         UpdateBatchReinforcementCost();
     }
     private void UpdateBatchReinforcementCost()

@@ -24,6 +24,9 @@ public class MainUIManager : MonoBehaviour
     private Vector3 playerDamageUIPos;
     private Vector3 monsterDamageUIPos;
 
+    public Slider slider_BGM;
+    public Slider slider_SE;
+
     private float resurrectionCount;
     //public Text tapGoldText;
     private void Awake()
@@ -35,6 +38,7 @@ public class MainUIManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Co_UpdatePlayerHpBar());
+        StartCoroutine(Co_UpdateSound());
         resurrectionCount = Player.instance.resurrectionCount;
     }
     private void LateUpdate()
@@ -61,22 +65,42 @@ public class MainUIManager : MonoBehaviour
     public void BtnEvt_ActiveShop()
     {
         shop.SetActive(!shop.activeSelf);
+        if (!shop.activeSelf)
+        {
+            SoundManager.instance.PlaySE_UI(1);
+            return;
+        }
+        SoundManager.instance.PlaySE_UI(0);
     }
     public void BtnEvt_ActiveSkillPopUp()
     {
         skillPopUp.SetActive(!skillPopUp.activeSelf);
+        if (!skillPopUp.activeSelf)
+        {
+            SoundManager.instance.PlaySE_UI(1);
+            return;
+        }
+        SoundManager.instance.PlaySE_UI(0);
     }
     public void BtnEvt_Tapping()
     {
         GameManager.Instance.Tapping();
+        SoundManager.instance.PlaySE_UI(2);
     }
     public void BtnEvt_FixCam()
     {
         FixCam();
+        SoundManager.instance.PlaySE_UI(0);
     }
     public void BtnEvt_ActiveSetting()
     {
         setting.SetActive(!setting.activeSelf);
+        if (!setting.activeSelf)
+        {
+            SoundManager.instance.PlaySE_UI(1);
+            return;
+        }
+        SoundManager.instance.PlaySE_UI(0);
     }
     public void EventTrigger_MoveLeft(bool isLeft)
     {
@@ -112,6 +136,16 @@ public class MainUIManager : MonoBehaviour
                 resurrectionCount = Player.instance.resurrectionCount;
                 yield return new WaitForSeconds(2f);
             }
+        }
+    }
+    private IEnumerator Co_UpdateSound()
+    {
+        while (true)
+        {
+            SoundManager.instance.audioSource_BGM.volume = slider_BGM.value;
+            SoundManager.instance.audioSource_SE_InGame.volume = slider_SE.value;
+            SoundManager.instance.audioSource_SE_UI.volume = slider_SE.value;
+            yield return null;
         }
     }
     public void ShowDamageUI(Vector3 position,string value, bool isPlayer)

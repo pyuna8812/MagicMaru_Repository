@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 [System.Serializable]
 public struct CommonStatus
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     public Sprite dieSprite;
     public Sprite normalSprite;
     public SpriteRenderer headSprite;
+    public SpriteRenderer[] allSpriteArray;
     public State State { get => state; set => state = value; }
 
     private void Awake()
@@ -154,6 +156,7 @@ public class Player : MonoBehaviour
         damage = Random.Range(commonStatus.minAttack, commonStatus.maxAttack);
         attackTarget.DecreaseHp(damage);
         MainUIManager.instance.ShowDamageUI(attackTarget.transform.position, Mathf.Ceil(damage).ToString(), true);
+        SoundManager.instance.PlaySE_InGame(0);
     }
     private void MovePlayer(Vector3 dir, bool isLeft)
     {
@@ -219,6 +222,7 @@ public class Player : MonoBehaviour
     {
         value = Mathf.Ceil(value);
         commonStatus.currentHp -= value;
+        SoundManager.instance.PlaySE_InGame(1);
         if(commonStatus.currentHp <= 0)
         {
             if (isDie)
@@ -239,6 +243,25 @@ public class Player : MonoBehaviour
         commonStatus.currentHp = commonStatus.maxHp;
         animator.SetTrigger("Resurrection");
         state = State.Idle;
+        for (int i = 1; i < 7; i++)
+        {
+            if (i % 2 != 0)
+            {
+                foreach (var item in allSpriteArray)
+                {
+                    item.DOColor(Color.clear, 0.1f);
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
+            else
+            {
+                foreach (var item in allSpriteArray)
+                {
+                    item.DOColor(Color.white, 0.1f);
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
         yield return new WaitForSeconds(2f);
         isDie = false;
     }

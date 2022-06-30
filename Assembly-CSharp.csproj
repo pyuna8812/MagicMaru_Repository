@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\02.Scripts\MonsterPool.cs" />
@@ -79,6 +76,7 @@
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\02.Scripts\Manager\SkillManager.cs" />
     <Compile Include="Assets\02.Scripts\Player.cs" />
+    <Compile Include="Assets\02.Scripts\Manager\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

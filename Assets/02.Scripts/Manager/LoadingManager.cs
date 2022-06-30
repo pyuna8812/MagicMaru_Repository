@@ -57,6 +57,7 @@ public class LoadingManager : MonoBehaviour
             loadingBar.fillAmount = timer;
         }
         SceneManager.LoadScene(nextScene);
+        SoundManager.instance.PlayBGM(1);
  
       /*  AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);  -> 데이터 연결 작업 후 수정 (6/19)
         op.allowSceneActivation = false;

@@ -15,7 +15,8 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Co_TitleTweening());        
+        StartCoroutine(Co_TitleTweening());
+        SoundManager.instance.PlayBGM(0);
     }
     private IEnumerator Co_TitleTweening()
     {

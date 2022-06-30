@@ -50,6 +50,7 @@ public class SkillManager : MonoBehaviour
         {
             return;
         }
+        SoundManager.instance.PlaySE_UI(3);
         GameManager.Instance.UpdateGold(-tapGoldReinforcePrice);
         GameManager.Instance.ReinforceTapGold();
         UpdateTapGoldUI();
