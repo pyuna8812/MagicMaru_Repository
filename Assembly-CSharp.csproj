@@ -61,6 +61,7 @@
     <Compile Include="Assets\02.Scripts\MonsterPool.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\02.Scripts\Manager\BigIntegerManager.cs" />
+    <Compile Include="Assets\02.Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\02.Scripts\CameraUtility.cs" />
     <Compile Include="Assets\02.Scripts\DOTween_1_2_632\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
