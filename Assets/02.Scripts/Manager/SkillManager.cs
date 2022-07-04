@@ -6,6 +6,8 @@ using CAH.GameSystem.BigNumber;
 
 public class SkillManager : MonoBehaviour
 {
+    public static SkillManager instance;
+
     public double tapGoldReinforcePrice;
 
     public Text tapGoldText;
@@ -14,10 +16,18 @@ public class SkillManager : MonoBehaviour
     public Image tapGoldReinforceImage;
     public Sprite tapGoldReinforceOnSprite;
     public Sprite tapGoldReinforceOffSprite;
-
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 0 = tapGoldLevel, 1 ~ = SkillLevel
+    /// </summary>
+    public int[] skillLevelArray = new int[5]; // 모든 스킬들의 레벨을 담을 배열 (0 = 탭골드, 1부터는 스킬 UI 왼쪽 상단 -> 순으로)
+    private void Awake()
     {
+        instance = this;
+    }
+    // Start is called before the first frame update
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(() => DataManager.LoadingComplete);
         UpdateTapGoldUI();
         StartCoroutine(Co_UpdateTapGoldReinforceButtonImage());
     }
@@ -51,15 +61,22 @@ public class SkillManager : MonoBehaviour
             return;
         }
         SoundManager.instance.PlaySE_UI(3);
-        GameManager.Instance.UpdateGold(-tapGoldReinforcePrice);
-        GameManager.Instance.ReinforceTapGold();
-        UpdateTapGoldUI();
+        ReinforceTapGold();
     }
     private void UpdateTapGoldUI()
     {
         tapGoldReinforcePrice = GameManager.Instance.tapGold * 9;
         tapGoldText.text = GameManager.Instance.tapGold < 1000 ? GameManager.Instance.tapGold.ToString("F1") : BigIntegerManager.GetUnit((long)GameManager.Instance.tapGold);
-        tapGoldLevelText.text = GameManager.Instance.skillLevelArray[0].ToString();
+        tapGoldLevelText.text = skillLevelArray[0].ToString();
         tapGoldReinforcePriceText.text = tapGoldReinforcePrice < 1000 ? tapGoldReinforcePrice.ToString("F1") : BigIntegerManager.GetUnit((long)tapGoldReinforcePrice);
+    }
+    private void ReinforceTapGold()
+    {
+        GameManager.Instance.UpdateGold(-tapGoldReinforcePrice);
+        GameManager.Instance.tapGold = GameManager.Instance.tapGold * 1.2f;
+        skillLevelArray[0]++;
+        UpdateTapGoldUI();
+        DataManager.SaveData(DataManager.DATA_PATH_SKILL + "0", skillLevelArray[0], 0);
+        DataManager.SaveData(DataManager.DATA_PATH_TAPGOLD, GameManager.Instance.tapGold, 1);
     }
 }

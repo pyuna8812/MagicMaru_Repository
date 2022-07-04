@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Monster : MonoBehaviour
 {
@@ -20,10 +21,15 @@ public class Monster : MonoBehaviour
     private Vector3 rayDirection;
     private Vector3 rayPoint;
     private int layer;
+    public SpriteRenderer[] allSprite;
     private void Awake()
     {
         layer = (-1) - (1 << LayerMask.NameToLayer("Monster"));
         box = GetComponent<BoxCollider2D>();
+        foreach (var item in allSprite)
+        {
+            item.color = Color.clear;
+        }
     }
     private float CheckDirection()
     {
@@ -32,6 +38,10 @@ public class Monster : MonoBehaviour
     }
     private void OnEnable()
     {
+        foreach (var item in allSprite)
+        {
+            item.DOColor(Color.white, 1f);
+        }
         box.enabled = true;
         StartCoroutine(Co_AnimTransition());
         if(monsterType == MonsterType.Normal || monsterType == MonsterType.Boss && Player.instance.isDie)
@@ -137,7 +147,12 @@ public class Monster : MonoBehaviour
                     break;
                 case State.Die:
                     animator.SetTrigger("Die");
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(1f);
+                    foreach (var item in allSprite)
+                    {
+                        item.DOColor(Color.clear, 2f);
+                    }
+                    yield return new WaitForSeconds(2f);
                     transform.gameObject.SetActive(false);
                     state = State.Idle;
                     break;

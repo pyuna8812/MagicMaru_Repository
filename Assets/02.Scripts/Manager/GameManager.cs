@@ -10,10 +10,6 @@ public class GameManager : MonoBehaviour
     public double gold;
     public double goldPerSec;
     public double tapGold;
-    /// <summary>
-    /// 0 = tapGoldLevel, 1 ~ = SkillLevel
-    /// </summary>
-    public int[] skillLevelArray = { 1, 1, 1, 1, 1 }; // 모든 스킬들의 레벨을 담을 배열 (0 = 탭골드, 1부터는 스킬 UI 왼쪽 상단 -> 순으로)
 
     public List<Interior> furnitureList = new List<Interior>();
     public List<Interior> decoList = new List<Interior>();
@@ -30,17 +26,19 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
     public static GameManager Instance { get => instance; }
-    private void Awake() //데이터 초기화와 동시에 모든 Manager 클래스의 초기화 함수를 Delegate를 통해 호출하도록 변경해야 한다. 5/4
+    private void Awake()
     {
         instance = this;
         startTime = DateTime.Now;
         exitTime = DateTime.Parse(PlayerPrefs.GetString("Time", DateTime.Now.ToString()));
         timeInterval = (startTime - exitTime);
         timeIntervalSecond = (int)timeInterval.TotalSeconds;
-        //UpdateGold(goldPerSec * timeIntervalSecond);
     }
-    private void Start()
+    private IEnumerator Start()
     {
+        StartCoroutine(DataManager.Co_LoadData());
+        yield return new WaitUntil(() => DataManager.LoadingComplete);
+        UpdateGold(goldPerSec * timeIntervalSecond);
         StartCoroutine(Co_GoldPerSec());
     }
     private IEnumerator Co_GoldPerSec()
@@ -58,36 +56,14 @@ public class GameManager : MonoBehaviour
     public void UpdateGoldPerSec(double value)
     {
         goldPerSec += value;
-    }
-    public void ReinforceTapGold()
-    {
-        tapGold = tapGold * 1.2f;
-        skillLevelArray[0]++;
-    }
-    private void LoadInteriorData()
-    {
-        foreach (var item in furnitureList)
-        {
-            string goldData = PlayerPrefs.GetString($"{item.gameObject.name}"+"gold", $"{item.defaultGoldPerSec}");
-            item.currentGoldPerSec = Convert.ToDouble(goldData);
-            string activeData = PlayerPrefs.GetString($"{item.gameObject.name}"+"active", $"{item.isActive}");
-            item.isActive = Convert.ToBoolean(activeData);
-        }
-    }
-    private void SaveInteriorData()
-    {
-        foreach (var item in furnitureList)
-        {
-            PlayerPrefs.SetString($"{item.gameObject.name}" + "active", $"{item.isActive}");
-            Debug.Log(PlayerPrefs.GetString($"{item.gameObject.name}" + "active", "none"));
-        }
-    }
-    public void BtnEvt_SaveTest()
-    {
-        SaveInteriorData();
+        DataManager.SaveData(DataManager.DATA_PATH_GOLDPERSEC, goldPerSec, 1);
     }
     public void Tapping()
     {
+        if (Player.instance.isDie)
+        {
+            return;
+        }
         gold += (long)tapGold;
     }
     public Quaternion ReversalObjectY(bool left)
@@ -106,5 +82,21 @@ public class GameManager : MonoBehaviour
         {
             print($"저장된 시간 : {exitTime}, 현재 시간 : {startTime}, 지난 시간 : {timeIntervalSecond}");
         }*/
+    }
+    private void OnApplicationQuit()
+    {
+        /*DataManager.SaveData(DataManager.DATA_PATH_TIME, DateTime.Now.ToString(), 1);
+        DataManager.SaveData(DataManager.DATA_PATH_GOLD, gold, 1);
+        DataManager.SaveData(DataManager.DATA_PATH_POS, Player.instance.transform.position.x, 2);
+        DataManager.SaveData(DataManager.DATA_PATH_HP, Player.instance.commonStatus.currentHp, 2);
+        DataManager.SaveData(DataManager.DATA_PATH_ISDIE, Player.instance.isDie, 1);
+        if (Player.instance.isDie)
+        {
+            DataManager.SaveData(DataManager.DATA_PATH_RESURRECTION, Player.instance.resurrectionCount, 2);
+        }*/
+    }
+    public void BtnEvt_DeleteData()
+    {
+        DataManager.ResetData();
     }
 }

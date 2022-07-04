@@ -47,11 +47,16 @@ public class Player : MonoBehaviour
     {
         instance = this;
         layer = (-1) - (1 << LayerMask.NameToLayer("Player"));
-        commonStatus.currentHp = commonStatus.maxHp;
     }
     // Start is called before the first frame update
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => DataManager.LoadingComplete);
+        if (isDie)
+        {
+            StartCoroutine(Co_Die());
+            yield return new WaitUntil(() => !isDie);
+        }
         StartCoroutine(Co_AnimTransition());
         StartCoroutine(Co_SelectBehavior());
     }
@@ -238,7 +243,11 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Die");
         isDie = true;
         headSprite.sprite = dieSprite;
-        yield return new WaitForSeconds(resurrectionCount);
+        while(resurrectionCount > 0)
+        {
+            resurrectionCount--;
+            yield return new WaitForSeconds(1f);
+        }
         headSprite.sprite = normalSprite;
         commonStatus.currentHp = commonStatus.maxHp;
         animator.SetTrigger("Resurrection");
@@ -264,5 +273,6 @@ public class Player : MonoBehaviour
         }
         yield return new WaitForSeconds(2f);
         isDie = false;
+        resurrectionCount = 30f;
     }
 }

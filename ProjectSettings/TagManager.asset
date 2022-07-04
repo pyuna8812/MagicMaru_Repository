@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Monster
+    uniqueID: 3584289931
+    locked: 0
+  - name: Boss
+    uniqueID: 696359677
+    locked: 0
+  - name: Player
+    uniqueID: 2113988653
+    locked: 0

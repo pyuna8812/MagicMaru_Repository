@@ -32,10 +32,7 @@ public class ShopManager : MonoBehaviour
     }*/
     public ShopState shopState = ShopState.Furniture;
     public Sprite imageBoxOnSprite;
-    public Sprite buttonLevelUpOnSprite;
-    public Sprite buttonLevelUpOffSprite;
-    public Sprite buttonOpenOnSprite;
-    public Sprite buttonOpenOffSprite;
+    public Sprite[] buttonSpriteArray;
     public List<Interior> currentSelectList = new List<Interior>();
     public List<Interior> furnitureList = new List<Interior>();
     public List<Interior> decoList = new List<Interior>();
@@ -115,13 +112,13 @@ public class ShopManager : MonoBehaviour
                 default:
                     Debug.LogError("Out of Index Range!");
                     return false;
-                    break;
             }
         }
         return true;
     }
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => DataManager.LoadingComplete);
         if (InitAllInteriorList())
         {
             ChangeShopState((int)shopState);
@@ -129,13 +126,13 @@ public class ShopManager : MonoBehaviour
     }
     private void InitInteriorInfo(InteriorUI target, Interior interior)
     {
-        if (interior.isUnLock)
+        if (interior.IsUnlock)
         {
             ChangeInteriorUIBoxToOn(target, interior);
         }
         else
         {
-            target.levelUpImage.sprite = buttonOpenOffSprite;
+            target.levelUpImage.sprite = buttonSpriteArray[3];
             target.priceText.text = interior.baseCost < 1000 ? interior.baseCost.ToString() : BigIntegerManager.GetUnit(interior.baseCost);
         }
         target.nameText.text = interior.name;
@@ -143,24 +140,11 @@ public class ShopManager : MonoBehaviour
     public void ChangeButtonSprite(Interior target, ButtonSpriteType type)
     {
         var button = currentArray[currentSelectList.FindIndex(x => x == target)].levelUpImage;
-        Debug.Log(currentSelectList.FindIndex(x => x == target));
-        switch (type)
+        if(button.sprite == buttonSpriteArray[(int)type])
         {
-            case ButtonSpriteType.LevelUpOn:
-                button.sprite = buttonLevelUpOnSprite;
-                break;
-            case ButtonSpriteType.LevelUpOff:
-                button.sprite = buttonLevelUpOffSprite;
-                break;
-            case ButtonSpriteType.OpenOn:
-                button.sprite = buttonOpenOnSprite;
-                break;
-            case ButtonSpriteType.OpenOff:
-                button.sprite = buttonOpenOffSprite;
-                break;
-            default:
-                break;
+            return;
         }
+        button.sprite = buttonSpriteArray[(int)type];
     }
     private void ChangeInteriorUIBoxToOn(InteriorUI target, Interior interior)
     {
@@ -168,7 +152,7 @@ public class ShopManager : MonoBehaviour
         target.iconImage.sprite = interior.icon;
         target.iconImage.gameObject.SetActive(true);
         UpdateLevelAndGetText(target, interior);
-        target.levelUpImage.sprite = buttonLevelUpOnSprite;
+        target.levelUpImage.sprite = buttonSpriteArray[0];
         if (interior.interiorType == InteriorType.Change)
         {
             target.changeObj.gameObject.SetActive(true);
@@ -208,16 +192,15 @@ public class ShopManager : MonoBehaviour
     }
     private void InteriorInteractionByInteriorList(List<Interior> interiors, int index)
     {
-        if (!interiors[index].isUnLock && interiors[index].isOpenReady)
+        if (!interiors[index].IsUnlock && interiors[index].isOpenReady)
         {
             OpenInterior(index);
             SoundManager.instance.PlaySE_UI(4);
             return;
         }
-        if (interiors[index].isUnLock)
+        if (interiors[index].IsUnlock)
         {
             LevelUpInterior(index);
-            SoundManager.instance.PlaySE_UI(3);
         }
     }
     private void OpenInterior(int index)
@@ -226,7 +209,7 @@ public class ShopManager : MonoBehaviour
         {
             return;
         }
-        currentSelectList[index].isUnLock = true;
+        currentSelectList[index].IsUnlock = true;
         currentSelectList[index].LevelUp();
         ChangeInteriorUIBoxToOn(currentArray[index], currentSelectList[index]);
         ChangeButtonSprite(currentSelectList[index], ButtonSpriteType.LevelUpOff);//GameManager.Instance.gold >= interiors[index].currentCost ? ButtonSpriteType.LevelUpOn : ButtonSpriteType.LevelUpOff);
@@ -242,6 +225,7 @@ public class ShopManager : MonoBehaviour
         if (currentSelectList[index].LevelUp())
         {
             UpdateLevelAndGetText(currentArray[index], currentSelectList[index]);
+            SoundManager.instance.PlaySE_UI(3);
         }
     }
     public void BtnEvt_ChangeType(int index)
@@ -260,6 +244,7 @@ public class ShopManager : MonoBehaviour
         }
         SoundManager.instance.PlaySE_UI(0);
         currentTypeInterior.CurrentSprite = currentTypeInterior.typeSpriteArray[index];
+        DataManager.SaveData(currentTypeInterior.name + DataManager.DATA_PATH_TYPE, index, 0);
         for (int i = 0; i < typeChangeContentSizeFitter.transform.childCount; i++)
         {
             var obj = typeChangeContentSizeFitter.transform.GetChild(i).GetChild(2).GetComponent<Image>();
@@ -372,7 +357,7 @@ public class ShopManager : MonoBehaviour
         }
         foreach (var item in currentSelectList)
         {
-            if (item.isUnLock)
+            if (item.IsUnlock)
             {
                 item.LevelUp();
                 UpdateLevelAndGetText(currentArray[currentSelectList.FindIndex(x => x == item)], item);
@@ -386,7 +371,7 @@ public class ShopManager : MonoBehaviour
         batchReinforcementCost = 0;
         foreach (var item in currentSelectList)
         {
-            if (item.isUnLock)
+            if (item.IsUnlock)
             {
                 batchReinforcementCost += item.currentCost;
             }
