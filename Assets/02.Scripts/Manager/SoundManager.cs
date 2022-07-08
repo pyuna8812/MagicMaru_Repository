@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(instance);
+        DataManager.LoadSoundData();
     }
     /// <summary>
     /// 0 = Å¸ÀÌÆ², 1 = ÀÎ°ÔÀÓ, 2 = ÄÆ¾À

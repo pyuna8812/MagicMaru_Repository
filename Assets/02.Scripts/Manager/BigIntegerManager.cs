@@ -81,7 +81,7 @@ namespace CAH.GameSystem.BigNumber
                 idx += 1;
             }
 
-            var point = GetPoint(lastValue);
+            int point = GetPoint(lastValue);
             var originalValue = currentValue * 1000;
             while (_units.Count <= idx)
                 UnitInitialize(5);

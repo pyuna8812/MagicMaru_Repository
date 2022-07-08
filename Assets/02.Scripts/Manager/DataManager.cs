@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Numerics;
 
 public static class DataManager
 {
@@ -17,7 +18,16 @@ public static class DataManager
     public const string DATA_PATH_HP = "HP";
     public const string DATA_PATH_ISDIE = "IsDie";
     public const string DATA_PATH_RESURRECTION = "Resurrection";
+    public const string DATA_PATH_BGM = "BGM";
+    public const string DATA_PATH_SE = "SE";
+    public const string DATA_PATH_GOLDINDEX = "GoldIndex";
     public static bool LoadingComplete { get; set; }
+    public static void LoadSoundData()
+    {
+        SoundManager.instance.audioSource_BGM.volume = PlayerPrefs.GetFloat(DATA_PATH_BGM, 1f);
+        SoundManager.instance.audioSource_SE_InGame.volume = PlayerPrefs.GetFloat(DATA_PATH_SE, 1f);
+        SoundManager.instance.audioSource_SE_UI.volume = PlayerPrefs.GetFloat(DATA_PATH_SE, 1f);
+    }
 /// <summary>
 /// true = µ•¿Ã≈Õ ¿˙¿Â, false = µ•¿Ã≈Õ ∑ŒµÂ
 /// </summary>
@@ -79,7 +89,7 @@ public static class DataManager
         GameManager.Instance.gold = Convert.ToDouble(PlayerPrefs.GetString(DATA_PATH_GOLD, "0"));
         GameManager.Instance.goldPerSec = Convert.ToDouble(PlayerPrefs.GetString(DATA_PATH_GOLDPERSEC, "0.5"));
         GameManager.Instance.tapGold = Convert.ToDouble(PlayerPrefs.GetString(DATA_PATH_TAPGOLD, "10"));
-        Player.instance.transform.position = new Vector3(PlayerPrefs.GetFloat(DATA_PATH_POS, 0), -1.69f);
+        Player.instance.transform.position = new UnityEngine.Vector3(PlayerPrefs.GetFloat(DATA_PATH_POS, 0), -1.69f);
         Player.instance.commonStatus.currentHp = PlayerPrefs.GetFloat(DATA_PATH_HP, 500);
         Player.instance.isDie = Convert.ToBoolean(PlayerPrefs.GetString(DATA_PATH_ISDIE, "false"));
         if (Player.instance.isDie)
@@ -87,6 +97,8 @@ public static class DataManager
             Player.instance.resurrectionCount = PlayerPrefs.GetFloat(DATA_PATH_RESURRECTION, 30);
         }
         Debug.Log($"∫∏¿Ø ∞ÒµÂ : {GameManager.Instance.gold}, √ ¥Á »πµÊ ∞ÒµÂ :{GameManager.Instance.goldPerSec}, ≈«∞ÒµÂ : {GameManager.Instance.tapGold}");
+        MainUIManager.instance.slider_BGM.value = PlayerPrefs.GetFloat(DATA_PATH_BGM, 1f);
+        MainUIManager.instance.slider_SE.value = PlayerPrefs.GetFloat(DATA_PATH_SE, 1f);
         return true;
     }
     /// <summary>
