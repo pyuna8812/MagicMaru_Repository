@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1007
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 105
+  controlID: 101
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 106
+  controlID: 113
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -327,22 +327,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/04.Prefabs
+    - Assets/03.Resources/Font
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/04.Prefabs
+  - Assets/03.Resources/Font
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Project\MagicMaru
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 229}
-    m_SelectedIDs: 5e590000
-    m_LastClickedID: 22878
-    m_ExpandedIDs: 0000000026590000285900002a5900002c5900002e590000305900003259000034590000365900005c59000000ca9a3b
+    scrollPos: {x: 0, y: 5}
+    m_SelectedIDs: 54590000
+    m_LastClickedID: 22868
+    m_ExpandedIDs: 0000000026590000285900002a5900002c5900002e5900003059000032590000345900003659000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -551,9 +551,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 279.0984, y: 376.55667, z: -24.1339}
+    m_Target: {x: 298.4972, y: 286.08832, z: -71.08479}
     speed: 2
-    m_Value: {x: 454.87384, y: 425.19012, z: -45.14135}
+    m_Value: {x: 298.4972, y: 286.08832, z: -71.08479}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -604,9 +604,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 882.2126
+    m_Target: 834.0171
     speed: 2
-    m_Value: 995.9469
+    m_Value: 834.0171
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -659,9 +659,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 90640000
-      m_LastClickedID: 25744
-      m_ExpandedIDs: 44faffff90640000a4660000
+      m_SelectedIDs: 20970000
+      m_LastClickedID: 38688
+      m_ExpandedIDs: 18b2ffff1497000020970000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
