@@ -10,6 +10,7 @@ public enum InteriorType
 }
 public class Interior : MonoBehaviour
 {
+    private bool isUnlock;
     private Sprite currentSprite;
     public ShopState shopState;
     public const int MAX_LEVEL = 100; //인테리어 강화 레벨 최대치
@@ -24,8 +25,20 @@ public class Interior : MonoBehaviour
     public double currentCost; // 인테리어 강화 가격
     public double defaultGoldPerSec; // 인테리어 초기 초당 획득 골드
     public double currentGoldPerSec; // 인테리어 현재 초당 획득 골드
-    public bool isActive { get; set; } //가구의 현재 활성화 상태(가구 장착 시 true, 해제 시 false)
-    public int Level { get => level; }
+    public int Level
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            level = value;
+            isLevelUpReady = true;
+            UpdateCurrentCostByLevel();
+            UpdateCurrentGoldPerSecByLevel();
+        }
+    }
     public Sprite CurrentSprite
     {
         get
@@ -39,7 +52,18 @@ public class Interior : MonoBehaviour
         }
     }
 
-    public bool isUnLock; //가구의 잠금 상태(구매 시 계속 true)
+    public bool IsUnlock
+    {
+        get
+        {
+            return isUnlock;
+        }
+        set
+        {
+            isUnlock = value;
+            DataManager.SaveData(name + DataManager.DATA_PATH_ISUNLOCK, isUnlock, 1);
+        }
+    }//가구의 잠금 상태(구매 시 계속 true)
     public bool isOpenReady;
     public bool isLevelUpReady;
 
@@ -52,6 +76,8 @@ public class Interior : MonoBehaviour
         UpdateCurrentCostByLevel();
         UpdateCurrentGoldPerSecByLevel();
         GameManager.Instance.UpdateGoldPerSec(currentGoldPerSec);
+        isLevelUpReady = false;
+        DataManager.SaveData(name + DataManager.DATA_PATH_LEVEL, level, 0);
         return true;
     }
     private void UpdateCurrentCostByLevel()
@@ -65,37 +91,34 @@ public class Interior : MonoBehaviour
     private void Awake()
     {
         childObj = transform.GetChild(0).gameObject;
-        if(level < 1)
+        if (level < 1)
         {
             currentGoldPerSec = defaultGoldPerSec;
             currentCost = baseCost;
         }
         currentSprite = childObj.GetComponent<SpriteRenderer>().sprite;
     }
-    private void Start()
+    private IEnumerator Start()
     {
-        // transform.gameObject.SetActive(isActive);
+        yield return new WaitUntil(() => DataManager.LoadingComplete);
+        if (isUnlock)
+        {
+            childObj.SetActive(true);
+        }
+        if (interiorType == InteriorType.Change)
+        {
+            CurrentSprite = typeSpriteArray[PlayerPrefs.GetInt(name + DataManager.DATA_PATH_TYPE, 0)]; //두줄 쓰기 귀찮아서 그냥 내부에서 프로퍼티로 세터 내부 로직 실행함
+            Debug.Log("타입 인덱스 : " + PlayerPrefs.GetInt(name + DataManager.DATA_PATH_TYPE, 0));
+        }
         StartCoroutine(Co_SetIsUnLock());
         StartCoroutine(Co_SetLevelUp());
-    }
-    private void Update()
-    {
-        /*if (isUnLock && GameManager.Instance.gold >= currentCost)
-        {
-            ShopManager.Instance.ChangeButton(this, ButtonSpriteType.LevelUpOn);
-        }*/
-       /* if(!isUnLock && GameManager.Instance.gold >= baseCost)
-        {
-            Debug.Log("tlqkf");
-            ShopManager.Instance.ChangeButton(this, ButtonSpriteType.OpenOn);
-        }*/
     }
     private IEnumerator Co_SetIsUnLock()
     {
         while (true)
         {
             yield return new WaitUntil(() => ShopManager.Instance.shopState == shopState);
-            while (!isUnLock)
+            while (!isUnlock)
             {
                 if(ShopManager.Instance.shopState != shopState)
                 {
@@ -105,15 +128,11 @@ public class Interior : MonoBehaviour
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.OpenOn);
                     isOpenReady = true;
-                    Debug.Log($"{name}오픈 온");
-                    //yield return new WaitUntil(() => GameManager.Instance.gold < baseCost);
                 }
                 else if(isOpenReady && GameManager.Instance.gold < baseCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.OpenOff);
                     isOpenReady = false;
-                    Debug.Log($"{name}오픈 오프");
-                   // yield return new WaitUntil(() => GameManager.Instance.gold >= baseCost);
                 }
                 yield return null;
             }
@@ -121,7 +140,7 @@ public class Interior : MonoBehaviour
     }
     private IEnumerator Co_SetLevelUp()
     {
-        yield return new WaitUntil(() => isUnLock);
+        yield return new WaitUntil(() => isUnlock);
         while (true)
         {
             yield return new WaitUntil(() => ShopManager.Instance.shopState == shopState);
@@ -131,19 +150,15 @@ public class Interior : MonoBehaviour
                 {
                     break;
                 }
-                if (!isLevelUpReady && GameManager.Instance.gold >= currentCost)
+                if (GameManager.Instance.gold >= currentCost)//!isLevelUpReady && 
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOn);
                     isLevelUpReady = true;
-                    Debug.Log($"{name}레벨업 온");
-                    //yield return new WaitUntil(() => GameManager.Instance.gold < currentCost);
                 }
-                else if(isLevelUpReady && GameManager.Instance.gold < currentCost)
+                else if (GameManager.Instance.gold < currentCost)//!isLevelUpReady && 
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOff);
                     isLevelUpReady = false;
-                    Debug.Log($"{name}레벨업 오프");
-                    //yield return new WaitUntil(() => GameManager.Instance.gold >= currentCost);
                 }
                 yield return null;
             }

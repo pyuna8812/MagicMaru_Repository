@@ -35,8 +35,9 @@ public class MainUIManager : MonoBehaviour
         camera = Camera.main.GetComponent<CameraUtility>();
         resurrectionCountTxt = dieUI.GetComponentInChildren<Text>();
     }
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => DataManager.LoadingComplete);
         StartCoroutine(Co_UpdatePlayerHpBar());
         StartCoroutine(Co_UpdateSound());
         resurrectionCount = Player.instance.resurrectionCount;
@@ -122,10 +123,11 @@ public class MainUIManager : MonoBehaviour
             yield return null;
             playerHpSlider.value = Player.instance.commonStatus.currentHp;
             playerHpText.text = playerHpSlider.value.ToString();
-            if(Player.instance.State == State.Die)
+            if(Player.instance.isDie)
             {
                 print("이프문 들어옴");
                 dieUI.SetActive(true);
+                resurrectionCount = Player.instance.resurrectionCount;
                 while (resurrectionCount > 0)
                 {
                     resurrectionCount -= Time.deltaTime;
@@ -133,7 +135,6 @@ public class MainUIManager : MonoBehaviour
                     yield return null;
                 }
                 dieUI.SetActive(false);
-                resurrectionCount = Player.instance.resurrectionCount;
                 yield return new WaitForSeconds(2f);
             }
         }
