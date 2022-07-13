@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: 0
-  goldPerSec: 100
+  goldPerSec: 100.9
   goldText: {fileID: 920951687}
 --- !u!4 &8247585
 Transform:

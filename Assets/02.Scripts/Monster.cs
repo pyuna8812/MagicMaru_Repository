@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum MonsterType
+{
+    Normal,
+    Boss
+}
 public class Monster : MonoBehaviour
 {
-    private enum MonsterType
-    {
-        Normal,
-        Boss
-    }
-    [SerializeField]private MonsterType monsterType;
+    public MonsterType monsterType;
     public CommonStatus commonStatus;
     public float attackDelay;
     [SerializeField] private State state;
@@ -42,29 +42,12 @@ public class Monster : MonoBehaviour
         {
             item.DOColor(Color.white, 1f);
         }
-        box.enabled = true;
-        StartCoroutine(Co_AnimTransition());
-        if(monsterType == MonsterType.Normal || monsterType == MonsterType.Boss && Player.instance.isDie)
-        {
-            StartCoroutine(Co_SelectBehavior());
-            return;
-        }
-        if(CheckDirection() < 0)
-        {
-            MoveMonster(Vector3.left, true);
-            rayDirection = Vector3.left;
-        }
-        else
-        {
-            MoveMonster(Vector3.right, false);
-            rayDirection = Vector3.right;
-        }
     }
     public void DecreaseHp(float value)
     {
         if(state != State.Fight)
         {
-            print(Vector3.Distance(Player.instance.transform.position, transform.position));
+            //print(Vector3.Distance(Player.instance.transform.position, transform.position));
             if(CheckDirection() < 0)
             {
                 transform.rotation = GameManager.Instance.ReversalObjectY(true);
@@ -95,6 +78,23 @@ public class Monster : MonoBehaviour
     public void ResetStatus()
     {
         commonStatus.currentHp = commonStatus.maxHp;
+        box.enabled = true;
+        StartCoroutine(Co_AnimTransition());
+        if (monsterType == MonsterType.Normal || monsterType == MonsterType.Boss && Player.instance.isDie)
+        {
+            StartCoroutine(Co_SelectBehavior());
+            return;
+        }
+        if (CheckDirection() < 0)
+        {
+            MoveMonster(Vector3.left, true);
+            rayDirection = Vector3.left;
+        }
+        else
+        {
+            MoveMonster(Vector3.right, false);
+            rayDirection = Vector3.right;
+        }
     }
     private IEnumerator Co_AnimTransition()
     {

@@ -17,40 +17,38 @@ public class MonsterPool : MonoBehaviour
     }
     private IEnumerator Co_SummonMonster()
     {
+        float rand;
         while (true)
         {
-            yield return null;
-
-            float rand = Random.Range(0f, 100f);
+            rand = Random.Range(0f, 100f);
             print(rand);
-            if(rand < 95)
+            summonDelay = Random.Range(5f, 12f);
+            yield return new WaitForSeconds(summonDelay);
+            if (rand < 95)
             {
-                if(GameManager.Instance.monsterList.Count < 10)
+                var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.monsterType == MonsterType.Normal);
+                if (monster == null)
                 {
-                    var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.name.Contains("Monster"));
-                    if(monster == null)
-                    {
-                        continue;
-                    }
-                    print(monster.name);
-                    GameManager.Instance.monsterList.Add(monster);
-                    monster.ResetStatus();
-                    summonMonster(monster.gameObject);
+                    Debug.Log("몬스터 소환 안됨");
+                    continue;
                 }
+                print(monster.name);
+                GameManager.Instance.monsterList.Add(monster);
+                summonMonster(monster.gameObject);
+                monster.ResetStatus();
             }
             else
             {
-                if(GameManager.Instance.bossList.Count < 3)
+                var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.monsterType == MonsterType.Boss);
+                if (monster == null)
                 {
-                    var monster = monsterList.Find(x => !x.gameObject.activeSelf && x.name.Contains("Boss"));
-                    monsterList.Remove(monster);
-                    GameManager.Instance.bossList.Add(monster);
-                    monster.ResetStatus();
-                    summonMonster(monster.gameObject);
+                    Debug.Log("몬스터 소환 안됨");
+                    continue;
                 }
+                GameManager.Instance.bossList.Add(monster);
+                summonMonster(monster.gameObject);
+                monster.ResetStatus();
             }
-            summonDelay = Random.Range(5f, 12f);
-            yield return new WaitForSeconds(summonDelay);
         }
     }
     private void summonMonster(GameObject obj)

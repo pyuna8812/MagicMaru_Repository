@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CAH.GameSystem.BigNumber;
+using System.Numerics;
 
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
 
     public double tapGoldReinforcePrice;
-
     public Text tapGoldText;
     public Text tapGoldLevelText;
     public Text tapGoldReinforcePriceText;
@@ -66,9 +66,9 @@ public class SkillManager : MonoBehaviour
     private void UpdateTapGoldUI()
     {
         tapGoldReinforcePrice = GameManager.Instance.tapGold * 9;
-        tapGoldText.text = GameManager.Instance.tapGold < 1000 ? GameManager.Instance.tapGold.ToString("F1") : BigIntegerManager.GetUnit((long)GameManager.Instance.tapGold);
+        tapGoldText.text = GameManager.Instance.tapGold < 1000 ? GameManager.Instance.tapGold.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)GameManager.Instance.tapGold);
         tapGoldLevelText.text = skillLevelArray[0].ToString();
-        tapGoldReinforcePriceText.text = tapGoldReinforcePrice < 1000 ? tapGoldReinforcePrice.ToString("F1") : BigIntegerManager.GetUnit((long)tapGoldReinforcePrice);
+        tapGoldReinforcePriceText.text = tapGoldReinforcePrice < 1000 ? tapGoldReinforcePrice.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)tapGoldReinforcePrice);
     }
     private void ReinforceTapGold()
     {

@@ -44,5 +44,9 @@ public class TitleManager : MonoBehaviour
                 LoadingManager.LoadScene("Main");
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DataManager.ResetData();
+        }
     }
 }

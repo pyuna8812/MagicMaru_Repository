@@ -21,7 +21,7 @@ public class Interior : MonoBehaviour
     public string name; // 인테리어 이름
     public Sprite icon; // 인테리어 아이콘 이미지
     private int level = 0; // 인테리어 강화 레벨
-    public long baseCost; // 인테리어 초기 구매 가격
+    public double baseCost; // 인테리어 초기 구매 가격
     public double currentCost; // 인테리어 강화 가격
     public double defaultGoldPerSec; // 인테리어 초기 초당 획득 골드
     public double currentGoldPerSec; // 인테리어 현재 초당 획득 골드
@@ -82,11 +82,11 @@ public class Interior : MonoBehaviour
     }
     private void UpdateCurrentCostByLevel()
     {
-        currentCost = baseCost * (Mathf.Pow(1.07f, level));
+        currentCost = baseCost * Mathf.Pow(1.07f, level);
     }
     private void UpdateCurrentGoldPerSecByLevel()
     {
-        currentGoldPerSec = defaultGoldPerSec * (Mathf.Pow(1.15f, level));
+        currentGoldPerSec = defaultGoldPerSec * Mathf.Pow(1.15f, level);
     }
     private void Awake()
     {
@@ -104,6 +104,10 @@ public class Interior : MonoBehaviour
         if (isUnlock)
         {
             childObj.SetActive(true);
+        }
+        else
+        {
+            childObj.SetActive(false);
         }
         if (interiorType == InteriorType.Change)
         {
@@ -124,12 +128,12 @@ public class Interior : MonoBehaviour
                 {
                     break;
                 }
-                if (!isOpenReady && GameManager.Instance.gold >= baseCost)
+                if (!isOpenReady && GameManager.Instance.gold >= (long)baseCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.OpenOn);
                     isOpenReady = true;
                 }
-                else if(isOpenReady && GameManager.Instance.gold < baseCost)
+                else if(isOpenReady && GameManager.Instance.gold < (long)baseCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.OpenOff);
                     isOpenReady = false;
@@ -150,15 +154,20 @@ public class Interior : MonoBehaviour
                 {
                     break;
                 }
-                if (GameManager.Instance.gold >= currentCost)//!isLevelUpReady && 
+                if (GameManager.Instance.gold >= (long)currentCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOn);
                     isLevelUpReady = true;
                 }
-                else if (GameManager.Instance.gold < currentCost)//!isLevelUpReady && 
+                else if (GameManager.Instance.gold < (long)currentCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOff);
                     isLevelUpReady = false;
+                }
+                if (level == MAX_LEVEL)
+                {
+                    ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOff);
+                    yield break;
                 }
                 yield return null;
             }

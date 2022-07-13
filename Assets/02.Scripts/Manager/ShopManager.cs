@@ -133,7 +133,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             target.levelUpImage.sprite = buttonSpriteArray[3];
-            target.priceText.text = interior.baseCost < 1000 ? interior.baseCost.ToString() : BigIntegerManager.GetUnit(interior.baseCost);
+            target.priceText.text = interior.baseCost < 1000 ? interior.baseCost.ToString() : BigIntegerManager.GetUnit((BigInteger)interior.baseCost);
         }
         target.nameText.text = interior.name;
     }
@@ -163,7 +163,12 @@ public class ShopManager : MonoBehaviour
         target.levelText.text = $"{interior.Level}";
         target.levelText.gameObject.SetActive(true);
         target.getText.text = interior.currentGoldPerSec < 1000 ? interior.currentGoldPerSec.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)interior.currentGoldPerSec);
-        target.priceText.text = interior.currentCost < 1000 ? interior.currentCost.ToString("F1") : BigIntegerManager.GetUnit((long)interior.currentCost);
+        if(interior.Level == Interior.MAX_LEVEL)
+        {
+            target.priceText.text = "MAX";
+            return;
+        }
+        target.priceText.text = interior.currentCost < 1000 ? interior.currentCost.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)interior.currentCost);
     }
     public void BtnEvt_InteriorInteraction(int index)
     {
@@ -218,7 +223,7 @@ public class ShopManager : MonoBehaviour
     }
     private void LevelUpInterior(int index)
     {
-        if(GameManager.Instance.gold < currentSelectList[index].currentCost)
+        if(GameManager.Instance.gold < currentSelectList[index].currentCost || currentSelectList[index].Level == Interior.MAX_LEVEL)
         {
             return;
         }
@@ -351,17 +356,18 @@ public class ShopManager : MonoBehaviour
     }
     private void BatchReinforcement()
     {
-        if(GameManager.Instance.gold < batchReinforcementCost)
+        if(GameManager.Instance.gold < batchReinforcementCost || batchReinforcementCost == 0)
         {
             return;
         }
         foreach (var item in currentSelectList)
         {
-            if (item.IsUnlock)
+            if(!item.IsUnlock || item.Level == Interior.MAX_LEVEL)
             {
-                item.LevelUp();
-                UpdateLevelAndGetText(currentArray[currentSelectList.FindIndex(x => x == item)], item);
+                continue;
             }
+            item.LevelUp();
+            UpdateLevelAndGetText(currentArray[currentSelectList.FindIndex(x => x == item)], item);
         }
         SoundManager.instance.PlaySE_UI(3);
         UpdateBatchReinforcementCost();
@@ -371,16 +377,16 @@ public class ShopManager : MonoBehaviour
         batchReinforcementCost = 0;
         foreach (var item in currentSelectList)
         {
-            if (item.IsUnlock)
+            if(!item.IsUnlock || item.Level == Interior.MAX_LEVEL)
             {
-                batchReinforcementCost += item.currentCost;
+                continue;
             }
+            batchReinforcementCost += item.currentCost;
         }
-        batchReinforcementText.text = batchReinforcementCost < 1000 ? batchReinforcementCost.ToString("F1") : BigIntegerManager.GetUnit((long)batchReinforcementCost);
+        batchReinforcementText.text = batchReinforcementCost < 1000 ? batchReinforcementCost.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)batchReinforcementCost);
     }
     private IEnumerator Co_UpdateBatchReinforcementImage()
     {
-        bool isReady = false;
         yield return new WaitUntil(() => GameManager.Instance != null);
         while (true)
         {
@@ -392,14 +398,12 @@ public class ShopManager : MonoBehaviour
                     batchReinforcementImage.sprite = batchReinforcementOffSprite;
                     continue;
                 }
-                if (GameManager.Instance.gold >= batchReinforcementCost)// && !isReady)
+                if (GameManager.Instance.gold >= batchReinforcementCost)
                 {
-                    isReady = true;
                     batchReinforcementImage.sprite = batchReinforcementOnSprite;
                 }
-                else if (GameManager.Instance.gold < batchReinforcementCost) //&& isReady)
+                else if (GameManager.Instance.gold < batchReinforcementCost)
                 {
-                    isReady = false;
                     batchReinforcementImage.sprite = batchReinforcementOffSprite;
                 }
             }
