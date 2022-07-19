@@ -16,8 +16,14 @@ public class Gold : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        double d = 10;
         //print(string.Format("{0,12:C2}", gold));
         StartCoroutine(GetGold());
+        for (int i = 0; i < 1000; i++)
+        {
+            d = d * 1.2;
+        }
+        print(d);
     }
     private void LateUpdate()
     {

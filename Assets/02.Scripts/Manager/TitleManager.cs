@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
+    public const float VERSION = 1.01f;
+
     public RectTransform logo;
     public RectTransform maru;
     public RectTransform monster;
@@ -41,12 +43,13 @@ public class TitleManager : MonoBehaviour
         {
             if(Input.touchCount > 0 || Input.GetMouseButton(0))
             {
+                if (Application.version != VERSION.ToString())
+                {
+                    print("버전 정보를 확인하세요!");
+                    return;
+                }
                 LoadingManager.LoadScene("Main");
             }
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DataManager.ResetData();
         }
     }
 }

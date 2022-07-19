@@ -53,37 +53,11 @@ public class LoadingManager : MonoBehaviour
         while(loadingBar.fillAmount < 1)
         {
             yield return null;
-            timer += 0.0005f;
+            timer += Time.deltaTime * 0.3f;
             loadingBar.fillAmount = timer;
         }
         SceneManager.LoadScene(nextScene);
         SoundManager.instance.PlayBGM(1);
- 
-      /*  AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);  -> 데이터 연결 작업 후 수정 (6/19)
-        op.allowSceneActivation = false;
-        float timer = 0.0f;
-        while (!op.isDone)
-        {
-            yield return null;
-            timer += Time.deltaTime;
-            if (op.progress < 0.9f)
-            {
-                loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, op.progress, timer);
-                if (loadingBar.fillAmount >= op.progress)
-                {
-                    timer = 0f;
-                }
-            }
-            else
-            {
-                loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, 1f, timer);
-                if (loadingBar.fillAmount == 1.0f)
-                {
-                    op.allowSceneActivation = true;
-                    yield break;
-                }
-            }
-        }*/
     }
     private void Update()
     {

@@ -6,7 +6,6 @@ using System.Numerics;
 
 public class GameManager : MonoBehaviour
 {
-    public const int VERSION = 1;
     //long타입 길이 : 9,223,372,036,854,775,807 = 922경 3372조 368억 54775807원 -> 모든 가구 오브젝트를 얻은 경우 long타입 최대치 도달까지 106일 걸림
     //모든 가구를 획득한 경우 초당 획득 골드 : 1,095,350,000,000 = 1조 953억 5천만원
     public double gold; // 골드가 1000 미만인 경우에만 사용
@@ -35,6 +34,10 @@ public class GameManager : MonoBehaviour
         exitTime = DateTime.Parse(PlayerPrefs.GetString("Time", DateTime.Now.ToString()));
         timeInterval = (startTime - exitTime);
         timeIntervalSecond = (int)timeInterval.TotalSeconds;
+        if(timeIntervalSecond > 43200)
+        {
+            timeIntervalSecond = 43200;
+        }
     }
     private IEnumerator Start()
     {
@@ -84,10 +87,6 @@ public class GameManager : MonoBehaviour
          {
              print($"저장된 시간 : {exitTime}, 현재 시간 : {startTime}, 지난 시간 : {timeIntervalSecond}");
          }*/
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UpdateGold(10000000000000000000);
-        }
     }
     private void OnApplicationQuit()
     {
