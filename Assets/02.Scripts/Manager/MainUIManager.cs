@@ -22,24 +22,48 @@ public class MainUIManager : MonoBehaviour
     public List<Transform> monsterDamageUI = new List<Transform>();
     public GameObject dieUI;
     public GameObject exitUI;
+    public RectTransform[] tapGoldRectArray;
+    public List<Image> tapGoldImageList = new List<Image>();
+    public List<Text> tapGoldTextList = new List<Text>();
     private Text resurrectionCountTxt;
     private UnityEngine.Vector3 playerDamageUIPos;
     private UnityEngine.Vector3 monsterDamageUIPos;
-
+    private UnityEngine.Vector2 screenPoint;
     public Slider slider_BGM;
     public Slider slider_SE;
-    //public Text tapGoldText;
+    public RectTransform filter;
+    private int tapGoldCount = 0;
+    private Color textColor;
+    private Color imageColor;
+    public Text offlineRewardText;
+    public GameObject offlineRewardObj;
+    public Image fadeOutImage;
     private void Awake()
     {
         instance = this;
         camera = Camera.main.GetComponent<CameraUtility>();
         resurrectionCountTxt = dieUI.GetComponentInChildren<Text>();
+        for (int i = 0; i < tapGoldRectArray.Length; i++)
+        {
+            tapGoldImageList.Add(tapGoldRectArray[i].GetComponentInChildren<Image>());
+            tapGoldTextList.Add(tapGoldRectArray[i].GetComponentInChildren<Text>());
+        }
+        textColor = tapGoldTextList[0].color;
+        textColor = new Color(textColor.r, textColor.g, textColor.b, 1);
+        imageColor = tapGoldImageList[0].color;
     }
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => DataManager.LoadingComplete);
+        if (GameManager.Instance.OfflineReward)
+        {
+            ShowOfflineReward();
+        }
         StartCoroutine(Co_UpdatePlayerHpBar());
-        StartCoroutine(Co_UpdateSound());
+        FixCam();
+        fadeOutImage.DOFade(0, 2f);
+        yield return new WaitForSeconds(2f);
+        fadeOutImage.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -55,16 +79,14 @@ public class MainUIManager : MonoBehaviour
         {
             if (item.gameObject.activeSelf)
             {
-                item.position = Camera.main.WorldToScreenPoint(playerDamageUIPos);
-                playerDamageUIPos = new UnityEngine.Vector3(playerDamageUIPos.x, playerDamageUIPos.y + 0.001f);
+                item.position = playerDamageUIPos;
             }
         }
         foreach (var item in monsterDamageUI)
         {
             if (item.gameObject.activeSelf)
             {
-                item.position = Camera.main.WorldToScreenPoint(monsterDamageUIPos);
-                monsterDamageUIPos = new UnityEngine.Vector3(monsterDamageUIPos.x, monsterDamageUIPos.y + 0.001f);
+                item.position = monsterDamageUIPos;
             }
         }
     }
@@ -75,6 +97,12 @@ public class MainUIManager : MonoBehaviour
     public void UpdateGoldPerSecUI()
     {     
         goldPerSecText.text = GameManager.Instance.goldPerSec < 1000 ? GameManager.Instance.goldPerSec.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)GameManager.Instance.goldPerSec);
+    }
+    public void BtnEvt_ConfirmOfflineReward()
+    {
+        GameManager.Instance.UpdateGold(GameManager.Instance.OfflineRewardGold);
+        SoundManager.instance.PlaySE_UI(0);
+        offlineRewardObj.SetActive(false);
     }
     public void BtnEvt_ActiveShop()
     {
@@ -99,6 +127,7 @@ public class MainUIManager : MonoBehaviour
     public void BtnEvt_Tapping()
     {
         GameManager.Instance.Tapping();
+        ShowTapGold();
         SoundManager.instance.PlaySE_UI(2);
     }
     public void BtnEvt_FixCam()
@@ -112,8 +141,6 @@ public class MainUIManager : MonoBehaviour
         if (!setting.activeSelf)
         {
             SoundManager.instance.PlaySE_UI(1);
-            DataManager.SaveData(DataManager.DATA_PATH_BGM, slider_BGM.value, 2);
-            DataManager.SaveData(DataManager.DATA_PATH_SE, slider_SE.value, 2);
             return;
         }
         SoundManager.instance.PlaySE_UI(0);
@@ -135,17 +162,37 @@ public class MainUIManager : MonoBehaviour
     {
         camera.isRight = isRight;
     }
+    private void ShowTapGold()
+    {
+        //RectTransformUtility.ScreenPointToLocalPointInRectangle(filter, Input.mousePosition, Camera.main, out screenPoint);
+        tapGoldRectArray[tapGoldCount].localPosition = new UnityEngine.Vector2(Random.Range(-600f, 600f), Random.Range(-300f, 300f));
+        tapGoldImageList[tapGoldCount].color = Color.white;
+        tapGoldTextList[tapGoldCount].color = textColor;
+        tapGoldTextList[tapGoldCount].text = "+" + (GameManager.Instance.tapGold < 1000 ? GameManager.Instance.tapGold.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)GameManager.Instance.tapGold));
+        tapGoldRectArray[tapGoldCount].DOLocalMoveY(tapGoldRectArray[tapGoldCount].localPosition.y + 20, 1f);
+        tapGoldImageList[tapGoldCount].DOColor(imageColor, 1f);
+        tapGoldTextList[tapGoldCount].DOColor(Color.clear, 1f);
+        tapGoldCount++;
+        if (tapGoldCount >= tapGoldRectArray.Length) tapGoldCount = 0;
+    }
     private void FixCam()
     {
-        camera.transform.position = new UnityEngine.Vector3(Player.instance.transform.position.x, 0, -10);
-        if(camera.transform.position.x <= CameraUtility.LEFT_MAX)
+        if(Player.instance.transform.position.x <= CameraUtility.LEFT_MAX)
         {
-            camera.transform.position = new UnityEngine.Vector3(CameraUtility.LEFT_MAX, 0, -10);
+            camera.transform.DOMove(new UnityEngine.Vector3(CameraUtility.LEFT_MAX, 0, -10), 2f);
+            return;
         }
-        else if(camera.transform.position.x >= CameraUtility.RiGHT_MAX)
+        if(Player.instance.transform.position.x >= CameraUtility.RiGHT_MAX)
         {
-            camera.transform.position = new UnityEngine.Vector3(CameraUtility.RiGHT_MAX, 0, -10);
+            camera.transform.DOMove(new UnityEngine.Vector3(CameraUtility.RiGHT_MAX, 0, -10), 2f);
+            return;
         }
+        camera.transform.DOMove(new UnityEngine.Vector3(Player.instance.transform.position.x, 0, -10), 1f);
+    }
+    private void ShowOfflineReward()
+    {
+        offlineRewardText.text = GameManager.Instance.OfflineRewardGold < 1000 ? GameManager.Instance.OfflineRewardGold.ToString("F1") : BigIntegerManager.GetUnit((BigInteger)GameManager.Instance.OfflineRewardGold);
+        offlineRewardObj.SetActive(true);
     }
     private IEnumerator Co_UpdatePlayerHpBar()
     {
@@ -173,15 +220,14 @@ public class MainUIManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator Co_UpdateSound()
+    public void UpdateBGMValue()
     {
-        while (true)
-        {
-            SoundManager.instance.audioSource_BGM.volume = slider_BGM.value;
-            SoundManager.instance.audioSource_SE_InGame.volume = slider_SE.value;
-            SoundManager.instance.audioSource_SE_UI.volume = slider_SE.value;
-            yield return null;
-        }
+        SoundManager.instance.audioSource_BGM.volume = slider_BGM.value;
+    }
+    public void UpdateSFXValue()
+    {
+        SoundManager.instance.audioSource_SE_InGame.volume = slider_SE.value;
+        SoundManager.instance.audioSource_SE_UI.volume = slider_SE.value;
     }
     public void ShowDamageUI(UnityEngine.Vector3 position,string value, bool isPlayer)
     {
@@ -193,6 +239,7 @@ public class MainUIManager : MonoBehaviour
             UnityEngine.Vector3 pos = position + new UnityEngine.Vector3(0, 4, 0);
             playerDamageUIPos = pos;
             damageUI.gameObject.SetActive(true);
+            damageUI.transform.position = pos;
         }
         else
         {
@@ -202,6 +249,7 @@ public class MainUIManager : MonoBehaviour
             UnityEngine.Vector3 pos = position + new UnityEngine.Vector3(0, 1, 0);
             monsterDamageUIPos = pos;
             damageUI.gameObject.SetActive(true);
+            damageUI.transform.position = pos;
         }
     }
 }

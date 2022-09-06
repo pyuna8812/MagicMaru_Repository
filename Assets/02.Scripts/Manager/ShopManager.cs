@@ -61,9 +61,10 @@ public class ShopManager : MonoBehaviour
     public Sprite batchReinforcementOffSprite;
 
     private double batchReinforcementCost;
-    private Interior currentTypeInterior;
+    public Interior currentTypeInterior;
     private static ShopManager instance;
 
+    private bool unlockComplete = false;
     public static ShopManager Instance { get => instance; set => instance = value; }
 
     private void Awake()
@@ -156,6 +157,9 @@ public class ShopManager : MonoBehaviour
         if (interior.interiorType == InteriorType.Change)
         {
             target.changeObj.gameObject.SetActive(true);
+            target.iconImage.raycastTarget = true;
+            target.iconImage.gameObject.AddComponent<Button>();
+            target.iconImage.GetComponent<Button>().onClick.AddListener(() => ChangeType(currentSelectList.IndexOf(interior)));
         }
     }
     private void UpdateLevelAndGetText(InteriorUI target, Interior interior)
@@ -252,7 +256,7 @@ public class ShopManager : MonoBehaviour
         DataManager.SaveData(currentTypeInterior.name + DataManager.DATA_PATH_TYPE, index, 0);
         for (int i = 0; i < typeChangeContentSizeFitter.transform.childCount; i++)
         {
-            var obj = typeChangeContentSizeFitter.transform.GetChild(i).GetChild(2).GetComponent<Image>();
+            var obj = typeChangeContentSizeFitter.transform.GetChild(i).GetChild(1).GetComponent<Image>();
             obj.sprite = typeApplySprite;
             if (currentTypeInterior.CurrentSprite == currentTypeInterior.typeSpriteArray[i])
             {
@@ -286,12 +290,12 @@ public class ShopManager : MonoBehaviour
             var obj = typeInfoPool.transform.GetChild(0);
             obj.transform.SetParent(typeChangeContentSizeFitter.transform);
             obj.transform.GetChild(0).GetComponent<Image>().sprite = currentTypeInterior.typeIconArray[i];
-            obj.transform.GetChild(1).GetComponent<Text>().text = currentTypeInterior.typeNameArray[i];
-            obj.GetChild(2).GetComponent<Image>().sprite = typeApplySprite;
+            obj.GetChild(1).GetComponent<Image>().sprite = typeApplySprite;
             if (currentTypeInterior.CurrentSprite == currentTypeInterior.typeSpriteArray[i])
             {
-                obj.GetChild(2).GetComponent<Image>().sprite = typeUnappliedSprite;
+                obj.GetChild(1).GetComponent<Image>().sprite = typeUnappliedSprite;
             }
+            obj.transform.GetChild(2).GetComponent<Text>().text = currentTypeInterior.typeNameArray[i];
             obj.gameObject.SetActive(true);
         }
        // currentSelectList[index]
@@ -344,11 +348,17 @@ public class ShopManager : MonoBehaviour
             unlockText.text = interior.name;
             unlockUI.SetActive(isEnlarge);
             unlockImage.transform.parent.DOScale(UnityEngine.Vector3.one, 0.5f).SetEase(Ease.OutBounce);
+            Invoke("Invoke_UnlockComplete", 0.5f);
         }
         else
         {
             unlockUI.SetActive(isEnlarge);
+            unlockComplete = isEnlarge;
         }
+    }
+    private void Invoke_UnlockComplete()
+    {
+        unlockComplete = true;
     }
     public void BtnEvt_BatchReinforcement()
     {
@@ -411,9 +421,9 @@ public class ShopManager : MonoBehaviour
     }
     public void LateUpdate()
     {
-        if (unlockUI.activeSelf)
+        if (unlockComplete)
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0)
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0)
             {
                 UpdateUnlockUI(null, false);
             }

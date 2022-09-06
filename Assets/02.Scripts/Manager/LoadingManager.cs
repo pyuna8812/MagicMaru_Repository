@@ -11,7 +11,10 @@ public class LoadingManager : MonoBehaviour
     public string[] tips;
 
     public static string nextScene;
-
+    public GameObject loadingObj;
+    public GameObject firstCut;
+    public GameObject secondCut;
+    public Image fadeOut;
     public Text loading;
     public Text percent;
     public Text tip;
@@ -20,7 +23,19 @@ public class LoadingManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(Co_Loading());
+        bool test = false;
+        test = bool.Parse(PlayerPrefs.GetString(DataManager.DATA_PATH_SECONDENTER, "false"));
+        loadingObj.SetActive(test);
+        firstCut.SetActive(!test);
+        fadeOut.gameObject.SetActive(!test);
+        if (!test)
+        {
+            StartCoroutine(Co_PlayComics());
+        }
+        else
+        {
+            StartCoroutine(Co_Loading());
+        }
     }
     public static void LoadScene(string sceneName)
     {
@@ -58,6 +73,30 @@ public class LoadingManager : MonoBehaviour
         }
         SceneManager.LoadScene(nextScene);
         SoundManager.instance.PlayBGM(1);
+    }
+    private IEnumerator Co_PlayComics()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            firstCut.transform.GetChild(i).DOMove(Vector3.zero, 2f);
+            yield return new WaitForSeconds(2f);
+        }
+        firstCut.transform.GetChild(3).GetComponent<Image>().DOColor(Color.white, 2f);
+        yield return new WaitForSeconds(2f);
+        firstCut.transform.DOMoveY(12, 1f);
+        yield return new WaitForSeconds(1f);
+        secondCut.SetActive(true);
+        for (int i = 0; i < 3; i++)
+        {
+            secondCut.transform.GetChild(i).DOMove(Vector3.zero, 2f);
+            yield return new WaitForSeconds(2f);
+        }
+        secondCut.transform.DOMoveY(12, 1f);
+        yield return new WaitForSeconds(1f);
+        loadingObj.SetActive(true);
+        fadeOut.DOColor(Color.clear, 1f);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Co_Loading());
     }
     private void Update()
     {

@@ -82,7 +82,7 @@ public class Interior : MonoBehaviour
     }
     private void UpdateCurrentCostByLevel()
     {
-        currentCost = baseCost * Mathf.Pow(1.07f, level);
+        currentCost = baseCost * Mathf.Pow(1.15f, level);
     }
     private void UpdateCurrentGoldPerSecByLevel()
     {
@@ -128,12 +128,12 @@ public class Interior : MonoBehaviour
                 {
                     break;
                 }
-                if (!isOpenReady && GameManager.Instance.gold >= (long)baseCost)
+                if (!isOpenReady && GameManager.Instance.gold >= baseCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.OpenOn);
                     isOpenReady = true;
                 }
-                else if(isOpenReady && GameManager.Instance.gold < (long)baseCost)
+                else if(isOpenReady && GameManager.Instance.gold < baseCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.OpenOff);
                     isOpenReady = false;
@@ -154,12 +154,12 @@ public class Interior : MonoBehaviour
                 {
                     break;
                 }
-                if (GameManager.Instance.gold >= (long)currentCost)
+                if (GameManager.Instance.gold >= currentCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOn);
                     isLevelUpReady = true;
                 }
-                else if (GameManager.Instance.gold < (long)currentCost)
+                else if (GameManager.Instance.gold < currentCost)
                 {
                     ShopManager.Instance.ChangeButtonSprite(this, ButtonSpriteType.LevelUpOff);
                     isLevelUpReady = false;

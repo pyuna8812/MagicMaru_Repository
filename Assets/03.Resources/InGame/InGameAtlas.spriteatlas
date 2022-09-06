@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: InGameAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 99c9a83ea558465479752a36c4aeaf67, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 69658e00c6afbcd4d886ed8db4bca6b8, type: 3}
+  - {fileID: 21300000, guid: 0b9e8cc08128c5d44beb6c001594f4c9, type: 3}
+  - {fileID: 21300000, guid: 5f1bac01d11aff040ada5c5ca626f84a, type: 3}
+  - {fileID: 21300000, guid: ea761491d12b2604cbbe3876edd41f88, type: 3}
+  - {fileID: 21300000, guid: 53588342df7186c4b9194c3d6aa74f80, type: 3}
+  - {fileID: 21300000, guid: 8e862552cf4c7e44e835d52d59adf9df, type: 3}
+  - {fileID: 21300000, guid: b8fa8de2263eca442b313e4a9ddf0745, type: 3}
+  - {fileID: 21300000, guid: 0c63046382928cf4a852d84e48ec4e6d, type: 3}
+  - {fileID: 21300000, guid: 4098c6831ae47314a93c732a541c5490, type: 3}
+  - {fileID: 21300000, guid: 237528a324c10624cbf1351efe95e94a, type: 3}
+  - {fileID: 21300000, guid: cc8953e35f115e540a41702a0a8dc3f0, type: 3}
+  - {fileID: 21300000, guid: 4b260af3e8386e7448049ccecfc9e3f8, type: 3}
+  - {fileID: 21300000, guid: 322f6d74422a34345bc6dd74d2e8268d, type: 3}
+  - {fileID: 21300000, guid: 5cbabee44f6a4924192fa1c06c2db9fa, type: 3}
+  - {fileID: 21300000, guid: a488eb155ef478b4190b10375c3ee111, type: 3}
+  - {fileID: 21300000, guid: c8f9fe2542efbe3498f7c960b8e39c48, type: 3}
+  - {fileID: 21300000, guid: 9179a4351f362b344b9a64b14b49812f, type: 3}
+  - {fileID: 21300000, guid: ef6622450c2a7854cb897a9a706805e2, type: 3}
+  - {fileID: 21300000, guid: fb60c5459b428bd4f9ce6466d531a5c4, type: 3}
+  - {fileID: 21300000, guid: 8b9541557b6fc3045a8a228588e83d60, type: 3}
+  - {fileID: 21300000, guid: dd5cd2a53810f404181f46a466d7ad46, type: 3}
+  - {fileID: 21300000, guid: bcdb39b50d9202a48852454107c161de, type: 3}
+  - {fileID: 21300000, guid: 0628fc1627e91fa4c841d0174f650de1, type: 3}
+  - {fileID: 21300000, guid: 91b18446afc7fe54bb0518ab94a0d053, type: 3}
+  - {fileID: 21300000, guid: 8157d6a66bd929042bf906443e35d5cf, type: 3}
+  - {fileID: 21300000, guid: 814e87a6c833959408c044b2c2734619, type: 3}
+  - {fileID: 21300000, guid: fa2b13b689c95ca4d9e1f07fc3e2d433, type: 3}
+  - {fileID: 21300000, guid: b7590ec60359518448fe5e55308a48c9, type: 3}
+  - {fileID: 21300000, guid: c6ad77f64954eb641b9f4fb744874989, type: 3}
+  - {fileID: 21300000, guid: ee44bdf6e36b60349a8328949f161630, type: 3}
+  - {fileID: 21300000, guid: 11c5008723c19de48a1284a6d4a2d975, type: 3}
+  - {fileID: 21300000, guid: 45893318305de4e41a464c94b7dada84, type: 3}
+  - {fileID: 21300000, guid: 302db328ffe9c0940a5ba96906de98ca, type: 3}
+  - {fileID: 21300000, guid: 66bc4c488d1f84e49bad5a5a2aef4306, type: 3}
+  - {fileID: 21300000, guid: 8e2f31681300a9549a26b1c10d66accb, type: 3}
+  - {fileID: 21300000, guid: ba76fdc8f429d5b42aa38404b42a1497, type: 3}
+  - {fileID: 21300000, guid: 3e64d2f850ad3b54cb37b8ce4e9cdfac, type: 3}
+  - {fileID: 21300000, guid: 107dc48956223cb479bebdd9aba25f0d, type: 3}
+  - {fileID: 21300000, guid: a12be33a6265f624eb2b37029f1835dc, type: 3}
+  - {fileID: 21300000, guid: 32ae974afd8a2d84795f80c25147775f, type: 3}
+  - {fileID: 21300000, guid: 8e85796aab3eff64390c499138bf9590, type: 3}
+  - {fileID: 21300000, guid: 4354888a61e7ae0438514c9d150e3e03, type: 3}
+  - {fileID: 21300000, guid: 612ec2cabf152204b9c32761263337af, type: 3}
+  - {fileID: 21300000, guid: d0616c3b130b1624490c09c1c4bf39e6, type: 3}
+  - {fileID: 21300000, guid: 39b5464bcdc7a154eb9d5f2f8d1d9cb6, type: 3}
+  - {fileID: 21300000, guid: cdeeeddbe15eb0540a3660b37a4fef68, type: 3}
+  - {fileID: 21300000, guid: 6fc99efb6f7db6241a656a257f12fb49, type: 3}
+  - {fileID: 21300000, guid: 81be7a3d5d0b07a49b19293fbb2033de, type: 3}
+  - {fileID: 21300000, guid: 95ccb48da13b61d479d4a1f5e00a2b03, type: 3}
+  - {fileID: 21300000, guid: cf53878db6d079a418511dd0c0d00ded, type: 3}
+  - {fileID: 21300000, guid: 200ba8dd6ac21a64198e4071a3abc4cb, type: 3}
+  - {fileID: 21300000, guid: 3121b8edb8748844384e09652246ecb3, type: 3}
+  - {fileID: 21300000, guid: 80cb8c2e47c2cf846890837b5a4c8a30, type: 3}
+  - {fileID: 21300000, guid: 415efc3e320c6614fbf80817f35cfdda, type: 3}
+  - {fileID: 21300000, guid: 90f0b69e44e052a42905552ba06163a3, type: 3}
+  - {fileID: 21300000, guid: 3f812faea76b4234f8dbc27fd7997673, type: 3}
+  - {fileID: 21300000, guid: 546118ce9d7ad5946b80c0acfdda1e21, type: 3}
+  - {fileID: 21300000, guid: 5e428d8f7847fab4f9d3b19fbb550a14, type: 3}
+  - {fileID: 21300000, guid: 45d7d1bf08267f24f9995eb4fde8bdaa, type: 3}
+  - {fileID: 21300000, guid: d42a96efdd12de343af729e2fecfb1f3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Image_Deco_DrawerDeco
+  - Image_Furniture_Bookcase
+  - Image_Balcony_Washer_3
+  - Image_Prop_Thread
+  - Image_Prop_Flower_1
+  - Image_Prop_Flower_3
+  - Image_Background_Outside
+  - Image_Balcony_Washer_4
+  - Image_Prop_Package_2
+  - Image_Prop_Cushion_2
+  - Image_Prop_TrashCan_2
+  - Image_Prop_Diary_2
+  - Image_Prop_Package_1
+  - Image_Deco_Shelf
+  - Image_Furniture_Window
+  - Image_Prop_FeedBowl_2
+  - Image_Balcony_Washer_1
+  - Image_Furniture_Door
+  - Image_Furniture_Drawer
+  - Image_Furniture_Kitchen
+  - Image_Prop_Calendar_1
+  - Image_Furniture_BigPlant
+  - Image_Deco_BedShelf
+  - Image_Furniture_Bed_2
+  - Image_Prop_FeedBowl_1
+  - Image_Background
+  - Image_Prop_Cushion_3
+  - Image_Furniture_Table
+  - Image_Prop_Package_3
+  - Image_Prop_Calendar_3
+  - Image_Deco_SmallFrame
+  - Image_Prop_Cushion_4
+  - Image_Deco_WallDeco
+  - Image_Furniture_Closet_4
+  - Image_Prop_Cushion_1
+  - Image_Prop_Calendar_2
+  - Image_Deco_TableLight
+  - Image_Furniture_Closet_2
+  - Image_Prop_TableClock_2
+  - Image_Deco_BedLight
+  - Image_Balcony_Washer_2
+  - Image_Prop_TrashCan_1
+  - Image_Prop_Flower_2
+  - Image_Prop_Memo
+  - Image_Furniture_Chair
+  - Image_Prop_TrashCan_3
+  - Image_Balcony_BalconyLight
+  - Image_Prop_TableClock_1
+  - Image_Balcony_WasherDeco
+  - Image_Furniture_Bed_1
+  - Image_Furniture_CatTower
+  - Image_Deco_Clock
+  - Image_Furniture_Closet_3
+  - Image_Furniture_Closet_1
+  - Image_Balcony_BalconyShelf
+  - Image_Prop_Block
+  - Image_Deco_BigFrame
+  - Image_Prop_Diary_1
+  - Image_Prop_CatFeed
+  - Image_Prop_KeyHolder
+  m_RenderDataMap: {}
+  m_Tag: InGameAtlas
+  m_IsVariant: 0

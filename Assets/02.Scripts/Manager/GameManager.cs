@@ -24,9 +24,14 @@ public class GameManager : MonoBehaviour
     private DateTime startTime;
     private TimeSpan timeInterval;
     private int timeIntervalSecond;
+    private double offlineRewardGold;
+
+    public bool OfflineReward { get; set; }
 
     private static GameManager instance;
     public static GameManager Instance { get => instance; }
+    public double OfflineRewardGold { get => offlineRewardGold; set => offlineRewardGold = value; }
+
     private void Awake()
     {
         instance = this;
@@ -34,6 +39,10 @@ public class GameManager : MonoBehaviour
         exitTime = DateTime.Parse(PlayerPrefs.GetString("Time", DateTime.Now.ToString()));
         timeInterval = (startTime - exitTime);
         timeIntervalSecond = (int)timeInterval.TotalSeconds;
+        if(timeIntervalSecond > 0)
+        {
+            OfflineReward = true;
+        }
         if(timeIntervalSecond > 43200)
         {
             timeIntervalSecond = 43200;
@@ -43,7 +52,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(DataManager.Co_LoadData());
         yield return new WaitUntil(() => DataManager.LoadingComplete);
-        gold += goldPerSec * timeIntervalSecond;
+        offlineRewardGold = goldPerSec * timeIntervalSecond;
+        //gold += goldPerSec * timeIntervalSecond;
         StartCoroutine(Co_GoldPerSec());
         MainUIManager.instance.UpdateGoldUI();
         MainUIManager.instance.UpdateGoldPerSecUI();
@@ -76,18 +86,6 @@ public class GameManager : MonoBehaviour
         UnityEngine.Quaternion q = left ? UnityEngine.Quaternion.Euler(0, 0, 0) : UnityEngine.Quaternion.Euler(0, 180, 0);
         return q;
     }
-    private void Update()
-    {
-        /* if (Input.GetKeyDown(KeyCode.Space))
-         {
-             PlayerPrefs.SetString("Time", DateTime.Now.ToString());
-             print($"저장 시간 : {DateTime.Now}");
-         }
-         if (Input.GetKeyDown(KeyCode.P))
-         {
-             print($"저장된 시간 : {exitTime}, 현재 시간 : {startTime}, 지난 시간 : {timeIntervalSecond}");
-         }*/
-    }
     private void OnApplicationQuit()
     {
         DataManager.SaveData(DataManager.DATA_PATH_TIME, DateTime.Now.ToString(), 1);
@@ -99,9 +97,8 @@ public class GameManager : MonoBehaviour
         {
             DataManager.SaveData(DataManager.DATA_PATH_RESURRECTION, Player.instance.resurrectionCount, 2);
         }
-    }
-    public void BtnEvt_DeleteData()
-    {
-        DataManager.ResetData();
+        DataManager.SaveData(DataManager.DATA_PATH_SECONDENTER, true, 1);
+        DataManager.SaveData(DataManager.DATA_PATH_BGM, MainUIManager.instance.slider_BGM.value, 2);
+        DataManager.SaveData(DataManager.DATA_PATH_SE, MainUIManager.instance.slider_SE.value, 2);
     }
 }

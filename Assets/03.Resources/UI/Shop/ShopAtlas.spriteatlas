@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShopAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7cf526ee3aa081645ae1d3fc4d0ce3f4, type: 3}
+    - {fileID: 102900000, guid: 456db4b5434f3d247b275437634e4314, type: 3}
+    - {fileID: 102900000, guid: 8cec5b43453c942408b5fe0195eba2ea, type: 3}
+    - {fileID: 102900000, guid: 80ec47dc9b41b1d4bb4cd014b5ccd5da, type: 3}
+    - {fileID: 2800000, guid: c0ef1ebfc2af0ab4db52c9b5b488143e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 401db170f2cc0a94dbe54fc91da69e70, type: 3}
+  - {fileID: 21300000, guid: 11fa0670922a5054995cb92d3f10362e, type: 3}
+  - {fileID: 21300000, guid: d1673d3194cba5d4680a37adbe301dd2, type: 3}
+  - {fileID: 21300000, guid: 876a45417e759b247be7ce9587d6048c, type: 3}
+  - {fileID: 21300000, guid: 1ab6db5170e5ce046b8dc7abbecd386b, type: 3}
+  - {fileID: 21300000, guid: c32253619c985734999cddebb21e7006, type: 3}
+  - {fileID: 21300000, guid: 5b92c0919006abc41a12ecbd4fc6838d, type: 3}
+  - {fileID: 21300000, guid: e40039d1b8ba39a4fabbe4cc3c8902ca, type: 3}
+  - {fileID: 21300000, guid: 6d416bf14527faa42ab302c06d58c4fa, type: 3}
+  - {fileID: 21300000, guid: 0c9c6f62629ce314f9a5b520fdd36b84, type: 3}
+  - {fileID: 21300000, guid: ef0a2992afe58cd40a12e98bb90da93b, type: 3}
+  - {fileID: 21300000, guid: 1865b6131f0ed32488deee273de0a16e, type: 3}
+  - {fileID: 21300000, guid: 5bdf0923064e85c42877058384d1d7d2, type: 3}
+  - {fileID: 21300000, guid: 3e2caf63c6690f14a97ad330b273e4bb, type: 3}
+  - {fileID: 21300000, guid: da5e6fc3306fe72449e2894ed071b0d2, type: 3}
+  - {fileID: 21300000, guid: 9163e1d3fd1b0d946afb5c0cd044465f, type: 3}
+  - {fileID: 21300000, guid: ec1b76042acefdb4091f75284dc0745c, type: 3}
+  - {fileID: 21300000, guid: 338acc048147d9c4e937025fdd367811, type: 3}
+  - {fileID: 21300000, guid: 242254a46334b3142b9c52f37978d21f, type: 3}
+  - {fileID: 21300000, guid: 540bbda4cd42d7e438230670caa42c0b, type: 3}
+  - {fileID: 21300000, guid: 693177f4a38fc35428f08780cb2f249e, type: 3}
+  - {fileID: 21300000, guid: 35c80d255c6ed7e4885a1727d30aeb36, type: 3}
+  - {fileID: 21300000, guid: c4ee7d754629cb14e81b065c808213ac, type: 3}
+  - {fileID: 21300000, guid: c96302f5c67d6614f9d972373baa0f2e, type: 3}
+  - {fileID: 21300000, guid: 04a9d9262c0a78c4e9ee5a0bb9d3641a, type: 3}
+  - {fileID: 21300000, guid: 006eee568f4811e4993175f100c42673, type: 3}
+  - {fileID: 21300000, guid: 3fef23666cdc5034c8782534ad33e2f0, type: 3}
+  - {fileID: 21300000, guid: 929ad7c685e58ae408ab6bb27821c62f, type: 3}
+  - {fileID: 21300000, guid: 2deaeee665be3e540b5fb4107fb04f6a, type: 3}
+  - {fileID: 21300000, guid: 6d5de6176859b1f47b7413159aed36b9, type: 3}
+  - {fileID: 21300000, guid: c04e1a47d66a79d4b8a0bc1e8f2dab55, type: 3}
+  - {fileID: 21300000, guid: 8306f657eb9d29142a47dea724447f44, type: 3}
+  - {fileID: 21300000, guid: 91a7f0a7b4a8cd74a91407a1ffbc34d5, type: 3}
+  - {fileID: 21300000, guid: f0a829b7640f11d4d9052f5e427c4cdb, type: 3}
+  - {fileID: 21300000, guid: 65e399092e122114b873de916ec9c92d, type: 3}
+  - {fileID: 21300000, guid: 2badf419501c9494283426dc5e18b618, type: 3}
+  - {fileID: 21300000, guid: f94f5949080746d4cb5879427a46b5ca, type: 3}
+  - {fileID: 21300000, guid: 1fc453990479cc4428eb248f16a7682c, type: 3}
+  - {fileID: 21300000, guid: 1358caa900976f042b070fbb0806dde3, type: 3}
+  - {fileID: 21300000, guid: 9925fbb9b9b0f254791735c3b07d5bfe, type: 3}
+  - {fileID: 21300000, guid: e2bc77d9ea3f4bf41814a646c6b7d28f, type: 3}
+  - {fileID: 21300000, guid: cf1b019a5698c4940a452bcd4a056d0d, type: 3}
+  - {fileID: 21300000, guid: 2f42e1eaab9c5324293c03b9ae4e1254, type: 3}
+  - {fileID: 21300000, guid: 44d9426b1b6df0541ba853ecd3002e09, type: 3}
+  - {fileID: 21300000, guid: f75adc6b15d1bd5439259b6e3f7de28c, type: 3}
+  - {fileID: 21300000, guid: 3f136c7b7a4282e4a800ce1e50196014, type: 3}
+  - {fileID: 21300000, guid: 979e67ab9b6c91a44901f547ec169a0a, type: 3}
+  - {fileID: 21300000, guid: 024070bb3e8b52b46ba11f033fe3e09c, type: 3}
+  - {fileID: 21300000, guid: 4f6167bbe43e8014aaf256b9fcd4513f, type: 3}
+  - {fileID: 21300000, guid: a8113bcbd3bdaaf42b05729b61e989fe, type: 3}
+  - {fileID: 21300000, guid: a46ddb3c3f064fc4faeba84437368345, type: 3}
+  - {fileID: 21300000, guid: 027fdf5c0a86f6743b50a4b5dd72d62b, type: 3}
+  - {fileID: 21300000, guid: dd4ea97ccd3d47c4b917c4c09f40ae01, type: 3}
+  - {fileID: 21300000, guid: 9cdfda7c1979887478f2d8c6e5890a6d, type: 3}
+  - {fileID: 21300000, guid: 68dc428c5107d9543be7d8e28f6e4424, type: 3}
+  - {fileID: 21300000, guid: 746637ac48770614ab79e59914fe4938, type: 3}
+  - {fileID: 21300000, guid: e080fcbc783d7af4aa3b0b6b9b90a645, type: 3}
+  - {fileID: 21300000, guid: d0e5abcca82c82e4b9107c4466f211fc, type: 3}
+  - {fileID: 21300000, guid: 43ed610da83ca5a44b13b3dde02cbca5, type: 3}
+  - {fileID: 21300000, guid: d9b4341dc6669e249be1eab8e2eb90e6, type: 3}
+  - {fileID: 21300000, guid: d3d8792d92af22a408263d7ec63e3b48, type: 3}
+  - {fileID: 21300000, guid: 54e14d2deffc11b4bad6270e2d787164, type: 3}
+  - {fileID: 21300000, guid: 4c879ebd077739c468c83d727b8ad326, type: 3}
+  - {fileID: 21300000, guid: 4709f8ddf5c84ab459f2546fb806f82f, type: 3}
+  - {fileID: 21300000, guid: 1108198e66c42c64e816cbcd44270817, type: 3}
+  - {fileID: 21300000, guid: 3ee5ec9e969a14b4691349189aa3c760, type: 3}
+  - {fileID: 21300000, guid: 75cebd5f003c51548acbb259af789e2b, type: 3}
+  - {fileID: 21300000, guid: 64e4d79f01714174bb95fa43fdeb38cf, type: 3}
+  - {fileID: 21300000, guid: c0ef1ebfc2af0ab4db52c9b5b488143e, type: 3}
+  - {fileID: 21300000, guid: 0b46c8ef7ad91b64eb87aa9c0a23148e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Image_Furniture_Door
+  - Image_Prop_Memo
+  - Button_Bar
+  - Image_Prop_CatFeed
+  - Image_Deco_Clock
+  - Image_Deco_BedLight
+  - Image_Deco_SmallFrame
+  - Image_Furniture_Table
+  - Image_Box
+  - Image_Prop_Diary_1
+  - Image_Furniture_Kitchen
+  - Button_Arrow_Right
+  - Image_Furniture_Window
+  - Image_Deco_Shelf
+  - Image_Box
+  - Button_Open_Off
+  - Image_Prop_TrashCan_1
+  - Image_Balcony_Washer_1
+  - Button_Prop_Off
+  - Image_Filter
+  - Image_Prop_Calendar_1
+  - Image_Prop_Thread
+  - Image_Prop_Flower_1
+  - Button_Change
+  - Button_Balcony_On
+  - Image_Line
+  - Button_AllLevelUp
+  - Button_Deco_On
+  - Image_Furniture_Bed_1
+  - Button_Open_On
+  - Image_Deco_DrawerDeco
+  - Button_Use_Off
+  - Button_Use_On
+  - Image_Furniture_Chair
+  - Image_Balcony_WasherDeco
+  - Image_Deco_BigFrame
+  - Button_Arrow_Left
+  - Image_Prop_TableClock_1
+  - Image_Furniture_Drawer
+  - Image_Balcony_BalconyShelf
+  - Image_Furniture_BigPlant
+  - Button_Furniture_Off
+  - Image_Box_Off
+  - Button_LevelUp_On
+  - Image_Prop_Block
+  - Button_Close
+  - Image_UnlockText
+  - Image_Prop_Package_1
+  - Image_Furniture_Bookcase
+  - Image_Box_On
+  - Image_Deco_WallDeco
+  - Image_OuterLight
+  - Image_Furniture_CatTower
+  - Image_Deco_BedShelf
+  - Button_Prop_On
+  - Image_Prop_FeedBowl_1
+  - Button_Deco_Off
+  - Image_UnlockBox
+  - Button_Balcony_Off
+  - Image_Prop_Cushion_1
+  - Image_CloseText
+  - Image_Balcony_BalconyLight
+  - Image_Furniture_Closet_1
+  - Button_Furniture_On
+  - Button_AllLevelUp_Off
+  - Button_LevelUp_Off
+  - Image_Deco_TableLight
+  - Image_TypeBox
+  - Image_ShopBox
+  - Image_Prop_KeyHolder
+  m_RenderDataMap: {}
+  m_Tag: ShopAtlas
+  m_IsVariant: 0

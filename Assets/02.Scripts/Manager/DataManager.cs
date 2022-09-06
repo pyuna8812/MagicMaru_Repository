@@ -21,6 +21,7 @@ public static class DataManager
     public const string DATA_PATH_BGM = "BGM";
     public const string DATA_PATH_SE = "SE";
     public const string DATA_PATH_GOLDINDEX = "GoldIndex";
+    public const string DATA_PATH_SECONDENTER = "SecondEnter";
     public static bool LoadingComplete { get; set; }
     public static void LoadSoundData()
     {
@@ -28,11 +29,6 @@ public static class DataManager
         SoundManager.instance.audioSource_SE_InGame.volume = PlayerPrefs.GetFloat(DATA_PATH_SE, 1f);
         SoundManager.instance.audioSource_SE_UI.volume = PlayerPrefs.GetFloat(DATA_PATH_SE, 1f);
     }
-/// <summary>
-/// true = 데이터 저장, false = 데이터 로드
-/// </summary>
-/// <param name="isSave"></param>
-/// <returns></returns>
     public static IEnumerator Co_LoadData()
     {
         yield return new WaitUntil(() => InteriorData());

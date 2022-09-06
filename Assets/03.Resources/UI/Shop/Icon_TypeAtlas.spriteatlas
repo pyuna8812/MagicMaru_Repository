@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Icon_TypeAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 1ee32c4658f034347ae3b995fde01dea, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d563d480429fd8a42b1d83146faeb74b, type: 3}
+  - {fileID: 21300000, guid: 4192a1b0658a6a241b898b9a2b32eaea, type: 3}
+  - {fileID: 21300000, guid: 7e6b2a110985b8c48ad6c0df4c40232a, type: 3}
+  - {fileID: 21300000, guid: 43d8bf0213a2e6d47ab7a3db3c1b46c6, type: 3}
+  - {fileID: 21300000, guid: 1dfe9bd2a6ff8cb49b9132f8450b5b5e, type: 3}
+  - {fileID: 21300000, guid: f6b83493f531364458d5e21eca4327b6, type: 3}
+  - {fileID: 21300000, guid: 4a203fa3d5f910a4fb67f82aa4b8479b, type: 3}
+  - {fileID: 21300000, guid: f699f65465eed7049a5e8f6d92e63484, type: 3}
+  - {fileID: 21300000, guid: 2342e074d52a5e84e9f07deb41f125b2, type: 3}
+  - {fileID: 21300000, guid: cc3c46b4ef211c541a4b7725b0ff92de, type: 3}
+  - {fileID: 21300000, guid: 597dd5d4c41033e4f90fc4778823effe, type: 3}
+  - {fileID: 21300000, guid: 777a984509efcdb47938115029309509, type: 3}
+  - {fileID: 21300000, guid: 66ea5027f8cdb1e43914bed439301a4c, type: 3}
+  - {fileID: 21300000, guid: 46e77b3793880cf489190ada08c05c7d, type: 3}
+  - {fileID: 21300000, guid: cfe9c38784256e84ca9e2f833fc486a4, type: 3}
+  - {fileID: 21300000, guid: 80021297ccd0f3048b33b203e2d46150, type: 3}
+  - {fileID: 21300000, guid: aa6aa2190cafcb542922ae64dba5015f, type: 3}
+  - {fileID: 21300000, guid: d47497ba553ec4b42a5bb1e8c788c6ff, type: 3}
+  - {fileID: 21300000, guid: faebc9cac6697ad4e9b3667e71f6e2fb, type: 3}
+  - {fileID: 21300000, guid: 16e6954b1aa160b4ca7b56224776d187, type: 3}
+  - {fileID: 21300000, guid: 38faa45bf9f3f584f8ea8c1041868591, type: 3}
+  - {fileID: 21300000, guid: 285057fb22ce54841911424a128909cb, type: 3}
+  - {fileID: 21300000, guid: 8745467c938051544a0ae0438ea2403e, type: 3}
+  - {fileID: 21300000, guid: 4644358c4ecc08349ae609944c9c2bdc, type: 3}
+  - {fileID: 21300000, guid: 4d68246da150edc45a9bf1d5eb187ac5, type: 3}
+  - {fileID: 21300000, guid: 53d4bf6d39bda6a44beb297f1a8bfb25, type: 3}
+  - {fileID: 21300000, guid: 551d2fad977b91a4fb738fcfb532ef47, type: 3}
+  - {fileID: 21300000, guid: 0fdac9dd9f3411841afb0c785f5da35f, type: 3}
+  - {fileID: 21300000, guid: 7ed5c8fd2a4f34443bb36146ce18821e, type: 3}
+  - {fileID: 21300000, guid: 1239722e1dc9a884b85d4261e2469bfd, type: 3}
+  - {fileID: 21300000, guid: be78276fec6762845ab60d36b8da9411, type: 3}
+  - {fileID: 21300000, guid: c7c198afc32f1f74bbaf6b23222c67ab, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Image_Prop_Cushion_4
+  - Image_Prop_Diary_2
+  - Image_Prop_Package_2
+  - Image_Prop_Package_1
+  - Image_Prop_TrashCan_3
+  - Image_Prop_TableClock_1
+  - Image_Prop_Package_3
+  - Image_Prop_TrashCan_1
+  - Image_Prop_Calendar_1
+  - Image_Prop_Flower_1
+  - Image_Prop_TableClock_2
+  - Image_Prop_FeedBowl_1
+  - Image_Furniture_Bed_1
+  - Image_Prop_Flower_2
+  - Image_Prop_Calendar_3
+  - Image_Prop_Flower_3
+  - Image_Furniture_Closet_2
+  - Image_Prop_Calendar_2
+  - Image_Balcony_Washer_1
+  - Image_Balcony_Washer_4
+  - Image_Balcony_Washer_3
+  - Image_Prop_FeedBowl_2
+  - Image_Prop_TrashCan_2
+  - Image_Prop_Cushion_3
+  - Image_Furniture_Closet_1
+  - Image_Furniture_Bed_2
+  - Image_Furniture_Closet_4
+  - Image_Prop_Cushion_2
+  - Image_Prop_Diary_1
+  - Image_Balcony_Washer_2
+  - Image_Prop_Cushion_1
+  - Image_Furniture_Closet_3
+  m_RenderDataMap: {}
+  m_Tag: Icon_TypeAtlas
+  m_IsVariant: 0

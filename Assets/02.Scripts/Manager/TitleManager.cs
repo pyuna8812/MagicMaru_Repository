@@ -19,6 +19,8 @@ public class TitleManager : MonoBehaviour
     {
         StartCoroutine(Co_TitleTweening());
         SoundManager.instance.PlayBGM(0);
+        Screen.SetResolution(1280, 720, true);
+        Application.targetFrameRate = 60;
     }
     private IEnumerator Co_TitleTweening()
     {
@@ -51,5 +53,11 @@ public class TitleManager : MonoBehaviour
                 LoadingManager.LoadScene("Main");
             }
         }
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DataManager.ResetData();
+        }
+#endif
     }
 }

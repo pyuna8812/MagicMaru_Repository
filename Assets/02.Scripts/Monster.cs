@@ -64,7 +64,7 @@ public class Monster : MonoBehaviour
         {
             state = State.Die;
             box.enabled = false;
-            GameManager.Instance.UpdateGold(monsterType == MonsterType.Normal?GameManager.Instance.tapGold * 100 : GameManager.Instance.tapGold * 1000);
+            GameManager.Instance.UpdateGold(monsterType == MonsterType.Normal?GameManager.Instance.goldPerSec * 30 : GameManager.Instance.goldPerSec * 300);
             if(monsterType == MonsterType.Normal)
             {
                 GameManager.Instance.monsterList.Remove(this);
